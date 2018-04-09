@@ -1,0 +1,21 @@
+export const ADD_LINK = "ADD_LINK";
+export const EDIT_LINK = "EDIT_LINK";
+export const REMOVE_LINK = "REMOVE_LINK";
+
+export const signInRequests = {
+  SIGN_IN_REQUEST: "SIGN_IN_REQUEST",
+  SIGN_IN_SUCCESS: "SIGN_IN_SUCCESS",
+  SIGN_IN_ERROR: "SIGN_IN_ERROR",
+};
+
+export const signOutRequests = {
+  SIGN_OUT_REQUEST: "SIGN_OUT_REQUEST",
+  SIGN_OUT_SUCCESS: "SIGN_OUT_SUCCESS",
+  SIGN_OUT_ERROR: "SIGN_OUT_ERROR",
+};
+
+export const signUpRequests = {
+  SIGN_UP_REQUEST: "SIGN_UP_REQUEST",
+  SIGN_UP_SUCCESS: "SIGN_UP_SUCCESS",
+  SIGN_UP_ERROR: "SIGN_UP_ERROR",
+};
