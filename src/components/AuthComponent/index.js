@@ -15,7 +15,10 @@ export default class AuthComponent extends React.Component {
     this.state = {
       open: false,
       isSigningUp: false,
-      user: this.props.user,
+      login: null,
+      password: null,
+      name: null,
+      mail: null,
     };
   };
 
@@ -35,11 +38,11 @@ export default class AuthComponent extends React.Component {
         {this.state.isSigningUp ? <RaisedButton
           label="Sign In"
           primary={true}
-          onClick={this.handleSignUp}
+          onClick={this.handleSign}
         /> : <RaisedButton
           label="Sign Up"
           primary={true}
-          onClick={this.handleSignUp}
+          onClick={this.handleSign}
         />
         }
       </SignButtonContainer>,
@@ -47,7 +50,7 @@ export default class AuthComponent extends React.Component {
 
     return (
       <div>
-        { this.props.user ?
+        { this.props.userIsAuth ?
           <RaisedButton label="Sign out" onClick={this.handleSignOut} primary={true}/> :
           <RaisedButton label="Sign in" onClick={this.handleOpen} primary={true}/> }
         <Dialog
@@ -100,47 +103,47 @@ export default class AuthComponent extends React.Component {
     // this.props.signOut(); // to dispatch in redux
   };
 
-  handleSignUp = () => {
+  handleSign = () => {
     this.setState({isSigningUp: !this.state.isSigningUp});
   };
 
   handleSubmit = () => {
     this.state.isSigningUp ? // to dispatch in redux
-      this.props.signUp(this.state.user) :
-      this.props.signIn(this.state.user);
-    console.log(this.state.user.login + "  " + this.state.user.password);
+      this.props.signUp({
+       login: this.state.login,
+       mail: this.state.mail,
+       name: this.state.name,
+       password: this.state.password,
+      }) :
+      this.props.signIn({
+        login: this.state.login,
+        password: this.state.password,
+      });
+    console.log(this.state.login + "  " + this.state.password);
     this.handleClose();
   };
 
   handleLoginChange = (event, newValue) => {
     this.setState({
-      user: {
-        login: newValue
-      }
+        login: newValue,
     });
   };
 
   handleNameChange = (event, newValue) => {
     this.setState({
-      user: {
-        name: newValue
-      }
+        name: newValue,
     });
   };
 
   handlePasswordChange = (event, newValue) => {
     this.setState({
-      user: {
-        password: newValue
-      }
+        password: newValue,
     });
   };
 
   handleMailChange = (event, newValue) => {
     this.setState({
-      user: {
-        mail: newValue
-      }
+        mail: newValue,
     });
   };
 }

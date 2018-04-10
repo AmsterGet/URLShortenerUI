@@ -10,6 +10,7 @@ const HeaderWrapper = styled.header`
     width: 100%;
     height: 60px;
     border-bottom: 1px solid gray;
+    background: #06ffc94f;
 `;
 
 export default class Header extends PureComponent {
@@ -20,7 +21,7 @@ export default class Header extends PureComponent {
         <AuthComponent
           signIn = {this.props.signIn}
           signUp = {this.props.signUp}
-          user = {this.props.user}
+          userIsAuth = {this.props.userIsAuth}
         />
       </HeaderWrapper>
     );

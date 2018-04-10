@@ -3,9 +3,11 @@ import { signInRequests, signUpRequests } from "./actionTypes";
 export const signInSuccess = ({ login, mail, name, links }) => ({
   type: signInRequests.SIGN_IN_SUCCESS,
   payload: {
-    login,
-    mail,
-    name,
+    user: {
+      login,
+      mail,
+      name,
+    },
     links,
   },
 });
