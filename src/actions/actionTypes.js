@@ -1,6 +1,20 @@
-export const ADD_LINK = "ADD_LINK";
-export const EDIT_LINK = "EDIT_LINK";
-export const REMOVE_LINK = "REMOVE_LINK";
+export const guestLinkInfoRequests = {
+  LINK_INFO_REQUEST: "LINK_INFO_REQUEST",
+  LINK_INFO_SUCCESS: "LINK_INFO_SUCCESS",
+  LINK_INFO_ERROR: "LINK_INFO_ERROR",
+};
+
+export const guestLinksByTagNameRequests = {
+  LINKS_BY_TAG_NAME_REQUEST: "LINKS_BY_TAG_NAME_REQUEST",
+  LINKS_BY_TAG_NAME_SUCCESS: "LINKS_BY_TAG_NAME_SUCCESS",
+  LINKS_BY_TAG_NAME_ERROR: "LINKS_BY_TAG_NAME_ERROR",
+};
+
+export const userLinksActions = {
+  ADD_LINK: "ADD_LINK",
+  EDIT_LINK: "EDIT_LINK",
+  REMOVE_LINK: "REMOVE_LINK",
+};
 
 export const signInRequests = {
   SIGN_IN_REQUEST: "SIGN_IN_REQUEST",

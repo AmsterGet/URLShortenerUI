@@ -1,8 +1,15 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import styled from "styled-components";
-import HeaderContainer from "../../containers/HeaderContainer";
+import HeaderContainer from "../../containers/HeaderContainer/index";
 import Content from "../Content";
 import Footer from "../Footer";
+import "./index.css";
+
+const WrappedContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+`;
 
 const Container = styled.div`
     display: flex;
@@ -13,28 +20,16 @@ const Container = styled.div`
     width: 100%;
 `;
 
-const AppInnerContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    max-width: 1280px;
-    width: 100%;
-    height: 100vh;
-`;
-
-export default class App extends PureComponent {
+export default class App extends React.Component {
   render() {
     return (
-      <Container>
-        <AppInnerContainer>
-          <Container>
-            <HeaderContainer />
-            <Content />
-          </Container>
-          <Footer />
-        </AppInnerContainer>
-      </Container>
+      <WrappedContainer>
+        <Container>
+          <HeaderContainer />
+          <Content />
+        </Container>
+        <Footer />
+      </WrappedContainer>
     );
   }
 }

@@ -1,61 +1,83 @@
-import {
-  ADD_LINK,
-  EDIT_LINK,
-  REMOVE_LINK,
-} from "../actions/actionTypes";
+import { userLinksActions, guestLinkInfoRequests, guestLinksByTagNameRequests } from "../actions/actionTypes";
 
-export function userLinksReducer(state = [], action) {
+// export function userLinksReducer(state = [], action) {
+//   const { type, payload } = action;
+//   switch (type) {
+//   case userLinksActions.ADD_LINK:
+//     return [
+//       ...state,
+//       {
+//         originalUrl: payload.originalUrl,
+//         shortUrl: payload.shortUrl,
+//         postDate: payload.postDate,
+//         transitions: payload.transitions,
+//         description: payload.description,
+//         tags: payload.tags,
+//       },
+//     ];
+//   case userLinksActions.EDIT_LINK:
+//     return [
+//
+//     ];
+//   case userLinksActions.REMOVE_LINK:
+//     return [
+//
+//     ];
+//   default:
+//     return state;
+//   }
+// }
+
+const guestLinksInitialState = {
+  isLoading: false,
+  isError: false,
+  errorMessage: "",
+  link: false,
+  links: false,
+};
+
+export function guestLinksReducer(state = guestLinksInitialState, action) {
   const { type, payload } = action;
   switch (type) {
-  case ADD_LINK:
-    return [
+  case guestLinkInfoRequests.LINK_INFO_REQUEST:
+    return {
       ...state,
-      {
-        originalUrl: payload.originalUrl,
-        shortUrl: payload.shortUrl,
-        postDate: payload.postDate,
-        transitions: payload.transitions,
-        description: payload.description,
-        tags: payload.tags,
-      },
-    ];
-  case EDIT_LINK:
-    return [
-
-    ];
-  case REMOVE_LINK:
-    return [
-
-    ];
+      isLoading: true,
+      isError: false,
+    };
+  case guestLinkInfoRequests.LINK_INFO_SUCCESS:
+    return {
+      ...state,
+      link: payload.link,
+      isLoading: false,
+    };
+  case guestLinkInfoRequests.LINK_INFO_ERROR:
+    return {
+      ...state,
+      errorMessage: payload,
+      isLoading: false,
+      isError: true,
+    };
+  case guestLinksByTagNameRequests.LINKS_BY_TAG_NAME_REQUEST:
+    return {
+      ...state,
+      isLoading: true,
+      isError: false,
+    };
+  case guestLinksByTagNameRequests.LINKS_BY_TAG_NAME_SUCCESS:
+    return {
+      ...state,
+      links: payload.links,
+      isLoading: false,
+    };
+  case guestLinksByTagNameRequests.LINKS_BY_TAG_NAME_ERROR:
+    return {
+      ...state,
+      errorMessage: payload,
+      isLoading: false,
+      isError: true,
+    };
   default:
     return state;
   }
 }
-
-// export function guestLinksReducer(state, action) {
-//   const { type, payload } = action;
-//   switch (type) {
-//     case ADD_LINK:
-//       return {
-//         ...state,
-//     {
-//
-//     },
-//   };
-// case EDIT_LINK:
-//     return {
-//       ...state,
-//       user: payload,
-//       isLoading: false,
-//     };
-// case REMOVE_LINK:
-//     return {
-//       ...state,
-//       errorMessage: payload,
-//       isLoading: false,
-//       isError: true,
-//     };
-// default:
-//   return state;
-// }
-// }

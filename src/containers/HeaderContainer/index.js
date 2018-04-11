@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
-import $ from "jquery";
-import { boundSignIn, boundSignUp } from "../actions/boundActionCreators";
-import Header from "../components/Header";
+import { boundSignIn, boundSignUp } from "../../actions/boundActionCreators";
+import Header from "../../components/Header/index";
 
 function mapStateToProps(state) {
   return {
@@ -25,4 +24,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Header);
-

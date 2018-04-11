@@ -20,7 +20,7 @@ export default class AuthComponent extends React.Component {
       name: null,
       mail: null,
     };
-  };
+  }
 
   render() {
     const actions = [
@@ -100,7 +100,7 @@ export default class AuthComponent extends React.Component {
 
   handleSignOut = () => {
     console.log("Outed");
-    // this.props.signOut(); // to dispatch in redux
+    // this.props.signOut(); // to dispatch into redux
   };
 
   handleSign = () => {
@@ -108,7 +108,7 @@ export default class AuthComponent extends React.Component {
   };
 
   handleSubmit = () => {
-    this.state.isSigningUp ? // to dispatch in redux
+    this.state.isSigningUp ? // to dispatch into redux
       this.props.signUp({
        login: this.state.login,
        mail: this.state.mail,
