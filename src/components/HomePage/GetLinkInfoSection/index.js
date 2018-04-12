@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
@@ -42,11 +43,13 @@ export default class GetLinkInfoSection extends React.Component {
             <TextField floatingLabelText="Write down short link here"
                        onChange={this.handleShortLinkChange}/>
             <br/>
-            <RaisedButton
-              label="Short Link info"
-              primary={true}
-              onClick={this.handleLinkInfo}
-            />
+            <Link to="/info">
+              <RaisedButton
+                label="Get Short Link info"
+                primary={true}
+                onClick={this.handleLinkInfo}
+              />
+            </Link>
           </GetLinkInfoSectionInnerAligner>
         </AppInnerContainer>
       </GetLinkInfoSectionContainer>
@@ -54,13 +57,15 @@ export default class GetLinkInfoSection extends React.Component {
   }
 
   handleShortLinkChange = (event, newValue) => {
+    console.log(newValue);
+    newValue = newValue.replace(/^http([\s\S]*)[/]/gim, "");
     this.setState({
       shortLink: newValue,
     });
-    console.log(this.state.shortLink);
   };
 
   handleLinkInfo = () => {
+    if (!this.state.shortLink) return;
     this.props.getLinkInfo({ // to dispatch into redux
       shortLink: this.state.shortLink,
     });

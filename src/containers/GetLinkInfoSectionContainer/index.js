@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { boundGuestLinkInfo, boundGuestLinksByTagName } from "../../actions/boundActionCreators";
+import boundActionCreators from "../../actions/boundActionCreators/";
 import GetLinkInfoContainer from "../../components/HomePage/GetLinkInfoSection";
 
 function mapStateToProps(state) {
@@ -14,8 +14,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getLinkInfo: boundGuestLinkInfo(dispatch),
-    getLinksByTagName: boundGuestLinksByTagName(dispatch),
+    getLinkInfo: boundActionCreators.boundGuestLinkInfo(dispatch),
+    getLinksByTagName: boundActionCreators.boundGuestLinksByTagName(dispatch),
   };
 }
 

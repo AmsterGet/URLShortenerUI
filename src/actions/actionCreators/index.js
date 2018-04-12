@@ -1,9 +1,9 @@
-import { signInRequests, signUpRequests, guestLinkInfoRequests, guestLinksByTagNameRequests } from "./actionTypes";
+import { signInRequests, signUpRequests, guestLinkInfoRequests, guestLinksByTagNameRequests } from "../actionTypes/index";
 
 export const signInSuccess = ({ login, mail, name, links }) => ({
-  type: signInRequests.SIGN_IN_SUCCESS,
+  type: signInRequests.SUCCESS,
   payload: {
-    user: {
+    userData: {
       login,
       mail,
       name,
@@ -12,12 +12,12 @@ export const signInSuccess = ({ login, mail, name, links }) => ({
   },
 });
 export const signInError = data => ({
-  type: signInRequests.SIGN_IN_ERROR,
+  type: signInRequests.ERROR,
   payload: data,
 });
 
 export const signUpSuccess = ({ login, mail, name }) => ({
-  type: signUpRequests.SIGN_UP_SUCCESS,
+  type: signUpRequests.SUCCESS,
   payload: {
     login,
     mail,
@@ -25,7 +25,7 @@ export const signUpSuccess = ({ login, mail, name }) => ({
   },
 });
 export const signUpError = data => ({
-  type: signUpRequests.SIGN_UP_ERROR,
+  type: signUpRequests.ERROR,
   payload: data,
 });
 
@@ -33,23 +33,23 @@ export const signUpError = data => ({
 
 
 export const guestLinkInfoSuccess = link => ({
-  type: guestLinkInfoRequests.LINK_INFO_SUCCESS,
+  type: guestLinkInfoRequests.SUCCESS,
   payload: {
     link,
   },
 });
 export const guestLinkInfoError = data => ({
-  type: guestLinkInfoRequests.LINK_INFO_ERROR,
+  type: guestLinkInfoRequests.ERROR,
   payload: data,
 });
 
 export const guestLinksByTagNameSuccess = links => ({
-  type: guestLinksByTagNameRequests.LINKS_BY_TAG_NAME_SUCCESS,
+  type: guestLinksByTagNameRequests.SUCCESS,
   payload: {
     links,
   },
 });
 export const guestLinksByTagNameError = data => ({
-  type: guestLinksByTagNameRequests.LINKS_BY_TAG_NAME_ERROR,
+  type: guestLinksByTagNameRequests.ERROR,
   payload: data,
 });

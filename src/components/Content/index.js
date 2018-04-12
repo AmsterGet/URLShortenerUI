@@ -2,6 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import styled from "styled-components";
 import HomePage from "../HomePage";
+import LinkInfoPage from "../LinkInfoPage";
 
 const ContentWrapper = styled.main`
     display: flex;
@@ -16,8 +17,8 @@ export default class Content extends React.Component {
   render() {
     return (
       <ContentWrapper>
-        <Route path="/" component = { HomePage } />
-        {/*<Route path="/:shortUrl/info" component = { LinkInfoPage } />*/}
+        <Route exact path="/" component = { HomePage } />
+        <Route strict path="/info" component = { LinkInfoPage } />
         {/*<Route path="/:login/links" copmonent = { UserPage } />*/}
       </ContentWrapper>
     );

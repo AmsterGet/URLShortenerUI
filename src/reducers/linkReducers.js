@@ -1,4 +1,4 @@
-import { userLinksActions, guestLinkInfoRequests, guestLinksByTagNameRequests } from "../actions/actionTypes";
+import { userLinksActions, guestLinkInfoRequests, guestLinksByTagNameRequests } from "../actions/actionTypes/";
 
 // export function userLinksReducer(state = [], action) {
 //   const { type, payload } = action;
@@ -32,45 +32,45 @@ const guestLinksInitialState = {
   isLoading: false,
   isError: false,
   errorMessage: "",
-  link: false,
+  linkInfo: false,
   links: false,
 };
 
 export function guestLinksReducer(state = guestLinksInitialState, action) {
   const { type, payload } = action;
   switch (type) {
-  case guestLinkInfoRequests.LINK_INFO_REQUEST:
+  case guestLinkInfoRequests.REQUEST:
     return {
       ...state,
       isLoading: true,
       isError: false,
     };
-  case guestLinkInfoRequests.LINK_INFO_SUCCESS:
+  case guestLinkInfoRequests.SUCCESS:
     return {
       ...state,
-      link: payload.link,
+      linkInfo: payload.link,
       isLoading: false,
     };
-  case guestLinkInfoRequests.LINK_INFO_ERROR:
+  case guestLinkInfoRequests.ERROR:
     return {
       ...state,
       errorMessage: payload,
       isLoading: false,
       isError: true,
     };
-  case guestLinksByTagNameRequests.LINKS_BY_TAG_NAME_REQUEST:
+  case guestLinksByTagNameRequests.REQUEST:
     return {
       ...state,
       isLoading: true,
       isError: false,
     };
-  case guestLinksByTagNameRequests.LINKS_BY_TAG_NAME_SUCCESS:
+  case guestLinksByTagNameRequests.SUCCESS:
     return {
       ...state,
       links: payload.links,
       isLoading: false,
     };
-  case guestLinksByTagNameRequests.LINKS_BY_TAG_NAME_ERROR:
+  case guestLinksByTagNameRequests.ERROR:
     return {
       ...state,
       errorMessage: payload,

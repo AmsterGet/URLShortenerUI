@@ -23,6 +23,9 @@ const FooterInnerAligner = styled.div`
     justify-content: space-around;
     align-items: center;
     width: 100%;
+    @media (max-width: 650px) {
+      flex-direction: column;
+    }
 `;
 
 export default class Footer extends React.Component {

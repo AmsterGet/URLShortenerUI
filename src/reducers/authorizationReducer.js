@@ -1,86 +1,72 @@
-import { signInRequests, signOutRequests, signUpRequests } from "../actions/actionTypes";
+import { signInRequests, signOutRequests, signUpRequests } from "../actions/actionTypes/";
 
 const initialState = {
   isLoading: false,
   isError: false,
   errorMessage: "",
-  user: false,
+  userData: false,
   links: false,
 };
 
-export function signInReducer(state = initialState, action) {
+export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
-  case signInRequests.SIGN_IN_REQUEST:
+  case signInRequests.REQUEST:
     return {
       ...state,
       isLoading: true,
       isError: false,
     };
-  case signInRequests.SIGN_IN_SUCCESS:
+  case signInRequests.SUCCESS:
     return {
       ...state,
       user: payload.user,
       links: payload.links,
       isLoading: false,
     };
-  case signInRequests.SIGN_IN_ERROR:
+  case signInRequests.ERROR:
     return {
       ...state,
       errorMessage: payload,
       isLoading: false,
       isError: true,
     };
-  default:
-    return state;
-  }
-}
 
-export function signUpReducer(state = initialState, action) {
-  const { type, payload } = action;
-  switch (type) {
-  case signUpRequests.SIGN_UP_REQUEST:
+  case signUpRequests.REQUEST:
     return {
       ...state,
       isLoading: true,
       isError: false,
     };
-  case signUpRequests.SIGN_UP_SUCCESS:
+  case signUpRequests.SUCCESS:
     return {
       ...state,
-      user: payload,
+      user: payload.user,
       links: [],
       isLoading: false,
     };
-  case signUpRequests.SIGN_UP_ERROR:
+  case signUpRequests.ERROR:
     return {
       ...state,
       errorMessage: payload,
       isLoading: false,
       isError: true,
     };
-  default:
-    return state;
-  }
-}
 
-export function signOutReducer(state = initialState, action) {
-  const { type, payload } = action;
-  switch (type) {
-  case signOutRequests.SIGN_OUT_REQUEST:
+  case signOutRequests.REQUEST:
     return {
       ...state,
       isLoading: true,
       isError: false,
     };
-  case signOutRequests.SIGN_OUT_SUCCESS:
+  case signOutRequests.SUCCESS:
     return {
       ...state,
       user: false,
       links: payload.links,
       isLoading: false,
     };
-  case signOutRequests.SIGN_OUT_ERROR:
+  case signOutRequests.ERROR:
     return {
       ...state,
       errorMessage: payload,

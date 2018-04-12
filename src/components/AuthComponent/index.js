@@ -51,8 +51,8 @@ export default class AuthComponent extends React.Component {
     return (
       <div>
         { this.props.userIsAuth ?
-          <RaisedButton label="Sign out" onClick={this.handleSignOut} primary={true}/> :
-          <RaisedButton label="Sign in" onClick={this.handleOpen} primary={true}/> }
+          <RaisedButton label="Sign in" onClick={this.handleOpen} primary={true}/> :
+          <RaisedButton label="Sign out" onClick={this.handleSignOut} primary={true}/> }
         <Dialog
           title="Welcome"
           actions={actions}

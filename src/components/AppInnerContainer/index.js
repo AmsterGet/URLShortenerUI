@@ -6,8 +6,8 @@ const AppInnerContainer = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    max-width: 1280px;
-    width: 100%;
+    max-width: 1100px;
+    width: 95%;
 `;
 
 export default AppInnerContainer;

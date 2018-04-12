@@ -1,6 +1,23 @@
+a {
+    outline: none;
+    text-decoration: none;
+    color: black;
+    transition: all .3s ease;
+    overflow: hidden;
+    max-width: 400px;
+}
+a:hover {
+    color: rgba(0, 188, 212, 0.7)
+}
+@media (max-width: 1000px) {
+    a {
+        max-width: 210px;
+    }
+}
+
 @font-face {
     font-family: LifehackBasic-Regular;
-    src: url("../../fonts/LifehackBasic-Regular.otf");
+    src: url("../../assets/fonts/LifehackBasic-Regular.otf");
     font-weight: 400;
     font-size: 16px;
 }

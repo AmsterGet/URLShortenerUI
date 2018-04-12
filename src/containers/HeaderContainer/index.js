@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { boundSignIn, boundSignUp } from "../../actions/boundActionCreators";
-import Header from "../../components/Header/index";
+import boundActionCreators from "../../actions/boundActionCreators/";
+import Header from "../../components/Header/";
 
 function mapStateToProps(state) {
   return {
@@ -15,8 +15,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    signIn: boundSignIn(dispatch),
-    signUp: boundSignUp(dispatch),
+    signIn: boundActionCreators.boundSignIn(dispatch),
+    signUp: boundActionCreators.boundSignUp(dispatch),
   };
 }
 

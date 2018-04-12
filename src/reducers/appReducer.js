@@ -1,12 +1,10 @@
 import { combineReducers } from "redux";
-import { signInReducer, signUpReducer, signOutReducer } from "./authorizationReducers";
+import authorizationReducer from "./authorizationReducer";
 import { guestLinksReducer } from "./linkReducers";
 
 const appReducer = combineReducers({
-  signInUser: signInReducer,
-  signUp: signUpReducer,
-  signOut: signOutReducer,
-  guestLinks: guestLinksReducer,
+  user: authorizationReducer,
+  guest: guestLinksReducer,
 });
 
 export default appReducer;
