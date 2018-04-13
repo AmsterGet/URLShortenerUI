@@ -32,7 +32,7 @@ const AddLinkContainer = styled.div`
 `;
 
 const inputStyles = {
-  "margin-right": "18px",
+  marginRight: "18px",
 };
 
 const AddLinkHeader = styled.h3`

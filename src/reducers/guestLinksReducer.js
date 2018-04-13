@@ -1,32 +1,4 @@
-import { userLinksActions, guestLinkInfoRequests, guestLinksByTagNameRequests } from "../actions/actionTypes/";
-
-// export function userLinksReducer(state = [], action) {
-//   const { type, payload } = action;
-//   switch (type) {
-//   case userLinksActions.ADD_LINK:
-//     return [
-//       ...state,
-//       {
-//         originalUrl: payload.originalUrl,
-//         shortUrl: payload.shortUrl,
-//         postDate: payload.postDate,
-//         transitions: payload.transitions,
-//         description: payload.description,
-//         tags: payload.tags,
-//       },
-//     ];
-//   case userLinksActions.EDIT_LINK:
-//     return [
-//
-//     ];
-//   case userLinksActions.REMOVE_LINK:
-//     return [
-//
-//     ];
-//   default:
-//     return state;
-//   }
-// }
+import { guestLinkInfoRequests, guestLinksByTagNameRequests } from "../actions/actionTypes/";
 
 const guestLinksInitialState = {
   isLoading: false,
@@ -36,7 +8,7 @@ const guestLinksInitialState = {
   links: false,
 };
 
-export function guestLinksReducer(state = guestLinksInitialState, action) {
+export default function (state = guestLinksInitialState, action) { // guestLinksReducer
   const { type, payload } = action;
   switch (type) {
   case guestLinkInfoRequests.REQUEST:

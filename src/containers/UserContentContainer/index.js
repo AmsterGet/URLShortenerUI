@@ -12,15 +12,15 @@ function mapStateToProps(state) {
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     addLink: boundActionCreators.addLink(dispatch),
-//     updateLink: boundActionCreators.updateLink(dispatch),
-//     deleteLink: boundActionCreators.deleteLink(dispatch),
-//   };
-// }
+function mapDispatchToProps(dispatch) {
+  return {
+    // addLink: boundActionCreators.addLink(dispatch),
+    // updateLink: boundActionCreators.updateLink(dispatch),
+    // deleteLink: boundActionCreators.deleteLink(dispatch),
+  };
+}
 
 export default connect(
   mapStateToProps,
-  // mapDispatchToProps
+  mapDispatchToProps
 )(UserContent);
