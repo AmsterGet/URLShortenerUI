@@ -13,6 +13,10 @@ a:hover {
     a {
         max-width: 210px;
     }
+
+    .media-table-column {
+        display: none;
+    }
 }
 
 @font-face {

@@ -12,11 +12,16 @@ const InfoPageWrapper = styled.div`
     width: 100%;
 `;
 
+const customContentStyle = {
+  width: "95%",
+  maxWidth: "none",
+};
+
 export default class LinksPopup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: this.props.isPopupOpen,
+      open: !!this.props.links && this.props.isTagClicked,
     };
   }
 
@@ -35,10 +40,12 @@ export default class LinksPopup extends React.Component {
           title="Found links"
           actions={actions}
           modal={true}
+          contentStyle={customContentStyle}
+          autoScrollBodyContent={true}
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-          <LinksTable/>
+          <LinksTable links={this.props.links}/>
         </Dialog>
       </InfoPageWrapper>
     );
@@ -48,5 +55,12 @@ export default class LinksPopup extends React.Component {
     this.setState({
       open: false,
     });
+    this.props.changeTagClickState();
   };
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      open: !!nextProps.links && nextProps.isTagClicked,
+    });
+  }
 }

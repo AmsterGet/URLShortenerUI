@@ -24,9 +24,10 @@ export function boundGuestLinkInfo(dispatch) {
 
 export function boundGuestLinksByTagName(dispatch) {
   return (data) => {
+    console.log(data);
     axios({
       method: "get",
-      url: `http://localhost:1212/${data.shortLink}/info/${data.tagName}`,
+      url: `http://localhost:1212/${data.shortUrl}/info/${data.tagName}`,
     })
       .then((response) => {
         dispatch(guestLinksByTagNameSuccess(response.data));
