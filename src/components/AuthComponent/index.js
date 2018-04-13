@@ -1,15 +1,20 @@
 import React from "react";
+import { Link, Redirect } from "react-router-dom";
+import styled from "styled-components";
 import Dialog from "material-ui/Dialog";
 import FlatButton from "material-ui/FlatButton";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
-import styled from "styled-components";
 
 const SignButtonContainer = styled.div`
   display: inline-block;
 `;
 
-export default class AuthComponent extends React.Component {
+const UserDataContainer = styled.span`
+  margin-right: 15px;
+`;
+
+export default class AuthComponent extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -50,9 +55,22 @@ export default class AuthComponent extends React.Component {
 
     return (
       <div>
-        { this.props.userIsAuth ?
-          <RaisedButton label="Sign in" onClick={this.handleOpen} primary={true}/> :
-          <RaisedButton label="Sign out" onClick={this.handleSignOut} primary={true}/> }
+        { this.props.userData ?
+          <div>
+            <UserDataContainer>
+              <Link to={`/user/${this.props.userData.login}/links`}>
+                {this.props.userData.name}
+              </Link>
+            </UserDataContainer>
+            <RaisedButton label="Sign out"
+                          onClick={this.handleSignOut}
+                          primary={true}/>
+            <Redirect to={`/user/${this.props.userData.login}/links`}/>
+          </div> :
+          <RaisedButton label="Sign in"
+                        onClick={this.handleOpen}
+                        primary={true}/>
+        }
         <Dialog
           title="Welcome"
           actions={actions}

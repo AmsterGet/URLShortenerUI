@@ -58,7 +58,7 @@ export default class LinkInfoContent extends React.Component {
   render() {
     return (
       <InfoPageWrapper>
-        {this.props.shortUrl ?
+        {this.props.shortUrl && !this.props.errorMessage ?
           <InfoPageWrapper>
             <InfoContentWrapper>
               <SingleInfoContainer>
@@ -112,7 +112,8 @@ export default class LinkInfoContent extends React.Component {
           </InfoPageWrapper>
           :
           <span>
-            404: Link was not found
+            {/*Error: Link was not found*/}
+            {this.props.errorMessage}
           </span>
         }
       </InfoPageWrapper>

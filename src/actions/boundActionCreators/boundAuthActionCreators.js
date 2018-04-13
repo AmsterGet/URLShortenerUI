@@ -20,8 +20,8 @@ export function boundSignIn(dispatch) {
         console.log(response);
         dispatch(signInSuccess(response.data));
       })
-      .catch((response) => {
-        dispatch(signInError(response));
+      .catch((error) => {
+        dispatch(signInError(error.response.data));
       });
   };
 }
@@ -39,10 +39,14 @@ export function boundSignUp(dispatch) {
       },
     })
       .then((response) => {
-        dispatch(signUpSuccess(response.data));
+        dispatch(signUpSuccess({
+          login: userData.login,
+          name: userData.name,
+          mail: userData.mail,
+        }));
       })
-      .catch((response) => {
-        dispatch(signUpError(response));
+      .catch((error) => {
+        dispatch(signUpError(error.response.data));
       });
   };
 }

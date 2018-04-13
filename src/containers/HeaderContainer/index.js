@@ -4,12 +4,10 @@ import Header from "../../components/Header/";
 
 function mapStateToProps(state) {
   return {
-    user: state.user,
-    links: state.links,
-    userIsAuth: !!state.user,
-    isLoading: state.isLoading,
-    isError: state.isError,
-    errorMessage: state.errorMessage,
+    userData: state.user.userData,
+    isLoading: state.user.isLoading,
+    isError: state.user.isError,
+    errorMessage: state.user.errorMessage,
   };
 }
 

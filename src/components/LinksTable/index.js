@@ -42,13 +42,13 @@ export default class LinksTable extends React.Component {
             <TableRow key={index}>
               <TableRowColumn>
                 <a href={`${config.api + link.shortUrl}`}
-                   className="text-info">
+                   className="text-info table-link">
                   {config.api + link.shortUrl}
                 </a>
               </TableRowColumn>
               <TableRowColumn>
                 <a href={`${link.originalUrl}`}
-                   className="text-info">
+                   className="text-info table-link">
                   {link.originalUrl}
                 </a>
               </TableRowColumn>

@@ -10,6 +10,7 @@ function mapStateToProps(state) {
     postDate: state.guest.linkInfo.postDate,
     tags: state.guest.linkInfo.tags,
     links: state.guest.links,
+    errorMessage: state.guest.errorMessage,
   };
 }
 

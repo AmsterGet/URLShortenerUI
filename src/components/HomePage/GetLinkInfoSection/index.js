@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
-import HomePageInfoParagraph from "../HomePageInfoParagraph";
+import InfoParagraph from "../../InfoParagraph";
 import AppInnerContainer from "../../AppInnerContainer";
 
 const GetLinkInfoSectionContainer = styled.section`
@@ -29,6 +29,7 @@ export default class GetLinkInfoSection extends React.Component {
     super(props);
     this.state = {
       shortLink: null,
+      isInfoButtonClicked: false,
     };
   }
 
@@ -37,19 +38,19 @@ export default class GetLinkInfoSection extends React.Component {
       <GetLinkInfoSectionContainer>
         <AppInnerContainer>
           <GetLinkInfoSectionInnerAligner>
-            <HomePageInfoParagraph>
+            <InfoParagraph>
               But you can see information about Short Link without either account!
-            </HomePageInfoParagraph>
+            </InfoParagraph>
             <TextField floatingLabelText="Write down short link here"
                        onChange={this.handleShortLinkChange}/>
             <br/>
-            <Link to="/info">
-              <RaisedButton
-                label="Get Short Link info"
-                primary={true}
-                onClick={this.handleLinkInfo}
-              />
-            </Link>
+            <RaisedButton label="Get Short Link info"
+                          primary={true}
+                          onClick={this.handleLinkInfo}>
+              { this.state.isInfoButtonClicked ?
+                <Redirect to="/info"/> :
+                "" }
+            </RaisedButton>
           </GetLinkInfoSectionInnerAligner>
         </AppInnerContainer>
       </GetLinkInfoSectionContainer>
@@ -68,6 +69,9 @@ export default class GetLinkInfoSection extends React.Component {
     if (!this.state.shortLink) return;
     this.props.getLinkInfo({ // to dispatch into redux
       shortLink: this.state.shortLink,
+    });
+    this.setState({
+      isInfoButtonClicked: true,
     });
   }
 }

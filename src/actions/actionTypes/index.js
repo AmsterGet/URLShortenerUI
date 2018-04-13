@@ -6,12 +6,12 @@ export const guestLinksByTagNameRequests = createAsyncActionTypes("LINKS_BY_TAG_
 
 export const signInRequests = createAsyncActionTypes("SIGN_IN");
 
-export const signOutRequests = createAsyncActionTypes("SIGN_OUT");
-
 export const signUpRequests = createAsyncActionTypes("SIGN_UP");
 
-export const userLinksActions = {
-  ADD_LINK: "ADD_LINK",
-  EDIT_LINK: "EDIT_LINK",
-  REMOVE_LINK: "REMOVE_LINK",
-};
+export const signOutRequests = createAsyncActionTypes("SIGN_OUT");
+
+export const addLinkRequests = createAsyncActionTypes("ADD_LINK");
+
+export const editLinkRequests = createAsyncActionTypes("EDIT_LINK");
+
+export const removeLinkRequests = createAsyncActionTypes("REMOVE_LINK");
