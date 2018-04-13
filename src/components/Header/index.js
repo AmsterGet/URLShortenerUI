@@ -12,14 +12,20 @@ const HeaderWrapper = styled.header`
     height: 60px;
     border-bottom: 1px solid gray;
     background: #06ffc90d;
+    @media (max-width: 650px) {
+      height: 80px;
+    }
 `;
 
 const HeaderInnerAligner = styled.div`
-    display: flex;
-    flex-direction: row;
+    display: flex;   
     justify-content: space-around;
     align-items: center;
     width: 100%;
+    height: 100%;
+    @media (max-width: 650px) {
+      flex-direction: column;
+    }
 `;
 
 const Logo = styled.span`
@@ -40,7 +46,7 @@ export default class Header extends React.Component {
             <AuthComponent
               signIn = { this.props.signIn }
               signUp = { this.props.signUp }
-              userIsAuth = { this.props.userIsAuth }
+              userData = { this.props.userData }
             />
           </HeaderInnerAligner>
         </AppInnerContainer>

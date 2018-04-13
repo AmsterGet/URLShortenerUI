@@ -7,37 +7,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
-
-const tableData = [
-  {
-    name: 'John Smith',
-    status: 'Employed',
-  },
-  {
-    name: 'Randal White',
-    status: 'Unemployed',
-  },
-  {
-    name: 'Stephanie Sanders',
-    status: 'Employed',
-  },
-  {
-    name: 'Steve Brown',
-    status: 'Employed',
-  },
-  {
-    name: 'Joyce Whitten',
-    status: 'Employed',
-  },
-  {
-    name: 'Samuel Roberts',
-    status: 'Employed',
-  },
-  {
-    name: 'Adam Moore',
-    status: 'Employed',
-  },
-];
+import config from "../../config";
 
 export default class LinksTable extends React.Component {
   state = {
@@ -46,13 +16,11 @@ export default class LinksTable extends React.Component {
     showRowHover: true,
     showCheckboxes: false,
     deselectOnClickaway: true,
-    height: "300px",
   };
 
   render() {
     return (
       <Table
-        height={this.state.height}
         fixedHeader={this.state.fixedHeader}
       >
         <TableHeader displaySelectAll={this.state.showCheckboxes}
@@ -60,8 +28,8 @@ export default class LinksTable extends React.Component {
           <TableRow>
             <TableHeaderColumn tooltip="Short Url">Short Url</TableHeaderColumn>
             <TableHeaderColumn tooltip="Original Url">Original Url</TableHeaderColumn>
-            <TableHeaderColumn tooltip="Description">Description</TableHeaderColumn>
-            <TableHeaderColumn tooltip="Post date">Post date</TableHeaderColumn>
+            <TableHeaderColumn className="media-table-column" tooltip="Description">Description</TableHeaderColumn>
+            <TableHeaderColumn className="media-table-column" tooltip="Post date">Post date</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody
@@ -70,12 +38,24 @@ export default class LinksTable extends React.Component {
           showRowHover={this.state.showRowHover}
           stripedRows={this.state.stripedRows}
         >
-          {tableData.map( (row, index) => (
+          {this.props.links.map( (link, index) => (
             <TableRow key={index}>
-              <TableRowColumn>{index}</TableRowColumn>
-              <TableRowColumn>{row.name}</TableRowColumn>
-              <TableRowColumn>{row.status}</TableRowColumn>
-              <TableRowColumn>{(new Date()).toDateString()}</TableRowColumn>
+              <TableRowColumn>
+                <a href={`${config.api + link.shortUrl}`}
+                   className="text-info table-link">
+                  {config.api + link.shortUrl}
+                </a>
+              </TableRowColumn>
+              <TableRowColumn>
+                <a href={`${link.originalUrl}`}
+                   className="text-info table-link">
+                  {link.originalUrl}
+                </a>
+              </TableRowColumn>
+              <TableRowColumn className="media-table-column">{link.description}</TableRowColumn>
+              <TableRowColumn className="media-table-column">
+                {new Date(link.postDate).toDateString()}
+              </TableRowColumn>
             </TableRow>
           ))}
         </TableBody>

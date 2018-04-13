@@ -15,6 +15,7 @@ const InfoPageHeader = styled.h2`
     justify-content: center;
     align-items: center;
     font-family: LifehackBasic-Regular;
+    margin-bottom: 50px;
 `;
 
 export default class LinkInfoPage extends React.Component {

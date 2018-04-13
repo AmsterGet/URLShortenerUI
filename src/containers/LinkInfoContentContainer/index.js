@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import LinkInfoContent from "../../components/LinkInfoPage/LinkInfoContent";
+import boundActionCreators from "../../actions/boundActionCreators/";
 
 function mapStateToProps(state) {
   return {
@@ -8,8 +9,18 @@ function mapStateToProps(state) {
     description: state.guest.linkInfo.description,
     postDate: state.guest.linkInfo.postDate,
     tags: state.guest.linkInfo.tags,
-    isPopupOpen: true,
+    links: state.guest.links,
+    errorMessage: state.guest.errorMessage,
   };
 }
 
-export default connect(mapStateToProps)(LinkInfoContent);
+function mapDispatchToProps(dispatch) {
+  return {
+    getLinksByTagName: boundActionCreators.boundGuestLinksByTagName(dispatch),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LinkInfoContent);

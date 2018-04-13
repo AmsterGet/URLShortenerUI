@@ -52,24 +52,27 @@ const TagsListItem = styled.li`
 `;
 
 export default class LinkInfoContent extends React.Component {
+  state = {
+    isTagClicked: false,
+  };
   render() {
     return (
       <InfoPageWrapper>
-        {this.props.shortUrl ?
+        {this.props.shortUrl && !this.props.errorMessage ?
           <InfoPageWrapper>
             <InfoContentWrapper>
               <SingleInfoContainer>
                 <span>Original url</span>
-                <a href={`${this.props.originalUrl}`} className="text-info">
+                <a href={`${this.props.originalUrl}`}
+                   className="text-info">
                   {this.props.originalUrl}
                 </a>
               </SingleInfoContainer>
 
               <SingleInfoContainer>
                 <span>Short url</span>
-                <a
-                  href={`${config.api + this.props.shortUrl}`}
-                  className="text-info">
+                <a href={`${config.api + this.props.shortUrl}`}
+                   className="text-info">
                   {config.api + this.props.shortUrl}
                 </a>
               </SingleInfoContainer>
@@ -102,23 +105,35 @@ export default class LinkInfoContent extends React.Component {
               </SingleInfoContainer>
             </InfoContentWrapper>
 
-            <LinksPopup isPopupOpen={this.props.isPopupOpen}/>
+            <LinksPopup changeTagClickState={this.changeTagClickState}
+                        isTagClicked={this.state.isTagClicked}
+                        links={this.props.links}/>
 
           </InfoPageWrapper>
           :
           <span>
-            404: Link was not found
+            {/*Error: Link was not found*/}
+            {this.props.errorMessage}
           </span>
         }
       </InfoPageWrapper>
     );
   }
 
+  changeTagClickState = () => {
+    this.setState({
+      isTagClicked: !this.state.isTagClicked,
+    });
+  };
+
   tagClickHandle = (event) => {
-    if (event.target.tagName==="UL") {
+    if (event.target.tagName === "UL") {
         return;
     }
-    console.log(event.target.innerHTML);
-    // this.props.getLinksByTagName(event.target.innerText); // to dispatch into redux
+    this.changeTagClickState();
+    this.props.getLinksByTagName({
+      tagName: event.target.innerText,
+      shortUrl: this.props.shortUrl
+    }); // to dispatch into redux
   }
 }

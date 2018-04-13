@@ -49,6 +49,7 @@ export function guestLinksReducer(state = guestLinksInitialState, action) {
     return {
       ...state,
       linkInfo: payload.link,
+      errorMessage: "",
       isLoading: false,
     };
   case guestLinkInfoRequests.ERROR:
@@ -67,6 +68,7 @@ export function guestLinksReducer(state = guestLinksInitialState, action) {
   case guestLinksByTagNameRequests.SUCCESS:
     return {
       ...state,
+      errorMessage: "",
       links: payload.links,
       isLoading: false,
     };

@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import HomePageInfoParagraph from "../HomePageInfoParagraph";
+import InfoParagraph from "../../InfoParagraph";
 import AppInnerContainer from "../../AppInnerContainer";
 
 const HomeInfoSectionContainer = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 `;
 
 const HomeInfoSectionInnerAligner = styled.div`
@@ -22,12 +23,12 @@ export default class HomeInfoSection extends React.Component {
       <HomeInfoSectionContainer>
         <AppInnerContainer>
           <HomeInfoSectionInnerAligner>
-            <HomePageInfoParagraph>
+            <InfoParagraph>
               If you want to create your own Short Link, please, Sign in!
-            </HomePageInfoParagraph>
-            <HomePageInfoParagraph>
+            </InfoParagraph>
+            <InfoParagraph>
               If you haven't account, please, Sign Up!
-            </HomePageInfoParagraph>
+            </InfoParagraph>
           </HomeInfoSectionInnerAligner>
         </AppInnerContainer>
       </HomeInfoSectionContainer>

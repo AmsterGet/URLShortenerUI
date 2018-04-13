@@ -8,6 +8,7 @@ const AppInnerContainer = styled.div`
     align-items: center;
     max-width: 1100px;
     width: 95%;
+    height: 100%;
 `;
 
 export default AppInnerContainer;

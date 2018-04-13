@@ -15,6 +15,12 @@ a:hover {
     }
 }
 
+@media (max-width: 650px) {
+    .media-table-column {
+        display: none;
+    }
+}
+
 @font-face {
     font-family: LifehackBasic-Regular;
     src: url("../../assets/fonts/LifehackBasic-Regular.otf");

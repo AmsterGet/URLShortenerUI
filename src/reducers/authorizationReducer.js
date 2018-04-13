@@ -10,6 +10,7 @@ const initialState = {
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
+  console.log(payload);
   switch (type) {
   case signInRequests.REQUEST:
     return {
@@ -20,8 +21,9 @@ export default function (state = initialState, action) {
   case signInRequests.SUCCESS:
     return {
       ...state,
-      user: payload.user,
+      userData: payload.userData,
       links: payload.links,
+      errorMessage: "",
       isLoading: false,
     };
   case signInRequests.ERROR:
@@ -41,8 +43,9 @@ export default function (state = initialState, action) {
   case signUpRequests.SUCCESS:
     return {
       ...state,
-      user: payload.user,
+      userData: payload.userData,
       links: [],
+      errorMessage: "",
       isLoading: false,
     };
   case signUpRequests.ERROR:
@@ -62,8 +65,9 @@ export default function (state = initialState, action) {
   case signOutRequests.SUCCESS:
     return {
       ...state,
-      user: false,
-      links: payload.links,
+      userData: false,
+      links: false,
+      errorMessage: "",
       isLoading: false,
     };
   case signOutRequests.ERROR:
