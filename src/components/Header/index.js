@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import AuthComponent from "../AuthComponent"
-import AppInnerContainer from "../AppInnerContainer";
 
 const HeaderWrapper = styled.header`
     display: flex;
@@ -11,7 +10,7 @@ const HeaderWrapper = styled.header`
     width: 100%;
     height: 60px;
     border-bottom: 1px solid gray;
-    background: #06ffc90d;
+    background-color: #06ffc90d;
     @media (max-width: 650px) {
       height: 80px;
     }
@@ -38,7 +37,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <HeaderWrapper>
-        <AppInnerContainer>
+        <div className="inner-container">
           <HeaderInnerAligner>
             <Link to="/">
               <Logo>UrlShortener</Logo>
@@ -46,10 +45,11 @@ export default class Header extends React.Component {
             <AuthComponent
               signIn = { this.props.signIn }
               signUp = { this.props.signUp }
+              signOut = { this.props.signOut }
               userData = { this.props.userData }
             />
           </HeaderInnerAligner>
-        </AppInnerContainer>
+        </div>
       </HeaderWrapper>
     );
   }

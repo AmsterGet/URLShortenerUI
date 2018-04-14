@@ -3,11 +3,13 @@ import boundActionCreators from "../../actions/boundActionCreators/";
 import Header from "../../components/Header/";
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
     userData: state.user.userData,
     isLoading: state.user.isLoading,
     isError: state.user.isError,
     errorMessage: state.user.errorMessage,
+    message: state.user.message,
   };
 }
 
@@ -15,6 +17,7 @@ function mapDispatchToProps(dispatch) {
   return {
     signIn: boundActionCreators.boundSignIn(dispatch),
     signUp: boundActionCreators.boundSignUp(dispatch),
+    signOut: boundActionCreators.boundSignOut(dispatch),
   };
 }
 

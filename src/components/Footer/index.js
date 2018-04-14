@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import AppInnerContainer from "../AppInnerContainer";
 
 const FooterContainer = styled.footer`
     display: flex;
@@ -14,7 +13,7 @@ const FooterContainer = styled.footer`
     font-size: 19px;
     font-family: LifehackBasic-Regular;
     font-weight: 500;
-    background: #8080802e;
+    background-color: #8080802e;
 `;
 
 const FooterInnerAligner = styled.div`
@@ -32,7 +31,7 @@ export default class Footer extends React.Component {
   render() {
     return (
       <FooterContainer>
-        <AppInnerContainer>
+        <div className="inner-container">
           <FooterInnerAligner>
             <span>
             It is a footer
@@ -41,7 +40,7 @@ export default class Footer extends React.Component {
             Some contact information will be here
             </span>
           </FooterInnerAligner>
-        </AppInnerContainer>
+        </div>
       </FooterContainer>
     );
   }

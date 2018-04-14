@@ -3,7 +3,9 @@ import {
   signInSuccess,
   signInError,
   signUpSuccess,
-  signUpError
+  signUpError,
+  signOutSuccess,
+  signOutError,
 } from "../actionCreators/";
 
 export function boundSignIn(dispatch) {
@@ -16,8 +18,8 @@ export function boundSignIn(dispatch) {
         password: userData.password,
       },
     })
-      .then((response) => {
-        console.log(response);
+      .then((response) => { // and token in future
+        // console.log(response);
         dispatch(signInSuccess(response.data));
       })
       .catch((error) => {
@@ -38,7 +40,7 @@ export function boundSignUp(dispatch) {
         mail: userData.mail,
       },
     })
-      .then((response) => {
+      .then((response) => { // and token in future
         dispatch(signUpSuccess({
           login: userData.login,
           name: userData.name,
@@ -47,6 +49,22 @@ export function boundSignUp(dispatch) {
       })
       .catch((error) => {
         dispatch(signUpError(error.response.data));
+      });
+  };
+}
+
+export function boundSignOut(dispatch) {
+  return (data) => {
+    axios({
+      method: "post",
+      url: "http://localhost:1212/signOut",
+      data,
+    })
+      .then((response) => {
+        dispatch(signOutSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(signOutError(error.response.data));
       });
   };
 }

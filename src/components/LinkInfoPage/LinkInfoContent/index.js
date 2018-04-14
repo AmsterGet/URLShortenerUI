@@ -112,7 +112,6 @@ export default class LinkInfoContent extends React.Component {
           </InfoPageWrapper>
           :
           <span>
-            {/*Error: Link was not found*/}
             {this.props.errorMessage}
           </span>
         }
