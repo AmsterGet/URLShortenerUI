@@ -14,6 +14,11 @@ const UserDataContainer = styled.span`
   margin-right: 15px;
 `;
 
+const customContentStyle = {
+  width: "70%",
+  maxWidth: "445px",
+};
+
 export default class AuthComponent extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -76,6 +81,7 @@ export default class AuthComponent extends React.PureComponent {
           actions={actions}
           modal={true}
           open={this.state.open}
+          contentStyle={customContentStyle}
           onRequestClose={this.handleClose}
         >
           { this.state.isSigningUp ? <div>
@@ -118,7 +124,7 @@ export default class AuthComponent extends React.PureComponent {
 
   handleSignOut = () => {
     console.log("Outed");
-    // this.props.signOut(); // to dispatch into redux
+    this.props.signOut(this.props.userData); // to dispatch into redux
   };
 
   handleSign = () => {

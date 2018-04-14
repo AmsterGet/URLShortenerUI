@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import HomeInfoSection from "./HomeInfoSection";
-import GetLinkInfoSectionContainer from "../../containers/GetLinkInfoSectionContainer";
+import LinkInfoSectionContainer from "../../containers/LinkInfoSectionContainer";
 
 const HomePageWrapper = styled.div`
     display: flex;
@@ -16,7 +16,7 @@ export default class HomePage extends React.Component {
     return (
       <HomePageWrapper>
         <HomeInfoSection/>
-        <GetLinkInfoSectionContainer/>
+        <LinkInfoSectionContainer/>
       </HomePageWrapper>
     );
   }

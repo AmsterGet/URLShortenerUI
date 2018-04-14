@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import boundActionCreators from "../../actions/boundActionCreators/";
-import GetLinkInfoContainer from "../../components/HomePage/GetLinkInfoSection";
+import LinkInfoContainer from "../../components/HomePage/LinkInfoSection";
 
 function mapStateToProps(state) {
   return {
@@ -21,4 +21,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(GetLinkInfoContainer);
+)(LinkInfoContainer);

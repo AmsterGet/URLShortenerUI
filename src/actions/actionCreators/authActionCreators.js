@@ -1,6 +1,7 @@
 import {
   signInRequests,
   signUpRequests,
+  signOutRequests,
 } from "../actionTypes/index";
 
 export const signInSuccess = ({ login, mail, name, links }) => ({
@@ -31,5 +32,18 @@ export const signUpSuccess = ({ login, mail, name }) => ({
 });
 export const signUpError = data => ({
   type: signUpRequests.ERROR,
+  payload: data,
+});
+
+export const signOutSuccess = data => ({
+  type: signOutRequests.SUCCESS,
+  payload: {
+    userData: false,
+    links: false,
+    message: data.message,
+  },
+});
+export const signOutError = data => ({
+  type: signOutRequests.ERROR,
   payload: data,
 });

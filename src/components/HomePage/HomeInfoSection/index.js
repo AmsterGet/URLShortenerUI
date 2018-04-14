@@ -21,7 +21,7 @@ export default class HomeInfoSection extends React.Component {
   render() {
     return (
       <HomeInfoSectionContainer>
-        <AppInnerContainer>
+        <div className="inner-container">
           <HomeInfoSectionInnerAligner>
             <InfoParagraph>
               If you want to create your own Short Link, please, Sign in!
@@ -30,7 +30,7 @@ export default class HomeInfoSection extends React.Component {
               If you haven't account, please, Sign Up!
             </InfoParagraph>
           </HomeInfoSectionInnerAligner>
-        </AppInnerContainer>
+        </div>
       </HomeInfoSectionContainer>
     );
   }

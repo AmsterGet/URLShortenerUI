@@ -6,25 +6,25 @@ import RaisedButton from "material-ui/RaisedButton";
 import InfoParagraph from "../../InfoParagraph";
 import AppInnerContainer from "../../AppInnerContainer";
 
-const GetLinkInfoSectionContainer = styled.section`
+const LinkInfoSectionWrapper = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    background: #00abff17;
+    background-color: #00abff17;
     margin-top: 80px;
     padding: 30px 0;
 `;
 
-const GetLinkInfoSectionInnerAligner = styled.div`
+const LinkInfoSectionInnerAligner = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
 `;
 
-export default class GetLinkInfoSection extends React.Component {
+export default class LinkInfoSection extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,9 +35,9 @@ export default class GetLinkInfoSection extends React.Component {
 
   render() {
     return (
-      <GetLinkInfoSectionContainer>
-        <AppInnerContainer>
-          <GetLinkInfoSectionInnerAligner>
+      <LinkInfoSectionWrapper>
+        <div className="inner-container">
+          <LinkInfoSectionInnerAligner>
             <InfoParagraph>
               But you can see information about Short Link without either account!
             </InfoParagraph>
@@ -51,9 +51,9 @@ export default class GetLinkInfoSection extends React.Component {
                 <Redirect to="/info"/> :
                 "" }
             </RaisedButton>
-          </GetLinkInfoSectionInnerAligner>
-        </AppInnerContainer>
-      </GetLinkInfoSectionContainer>
+          </LinkInfoSectionInnerAligner>
+        </div>
+      </LinkInfoSectionWrapper>
     );
   }
 

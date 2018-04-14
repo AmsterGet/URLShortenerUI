@@ -1,4 +1,4 @@
-import { signInSuccess, signInError, signUpSuccess, signUpError } from "./authActionCreators.js";
+import { signInSuccess, signInError, signUpSuccess, signUpError, signOutSuccess, signOutError } from "./authActionCreators.js";
 import { guestLinkInfoSuccess, guestLinkInfoError, guestLinksByTagNameSuccess, guestLinksByTagNameError } from "./guestLinksActionCreators.js";
 import { addLinkSuccess, addLinkError, editLinkSuccess, editLinkError, removeLinkSuccess, removeLinkError } from "./userLinksActionCreators.js";
 
@@ -7,6 +7,8 @@ export {
   signInError,
   signUpSuccess,
   signUpError,
+  signOutSuccess,
+  signOutError,
   guestLinkInfoSuccess,
   guestLinkInfoError,
   guestLinksByTagNameSuccess,

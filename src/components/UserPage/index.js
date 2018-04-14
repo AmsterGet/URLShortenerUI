@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import UserContentContainer from "../../containers/UserContentContainer";
-import AppInnerContainer from "../AppInnerContainer";
 
 const UserPageWrapper = styled.div`
     display: flex;
@@ -15,9 +14,9 @@ export default class UserPage extends React.Component {
   render() {
     return (
       <UserPageWrapper>
-        <AppInnerContainer>
+        <div className="inner-container">
           <UserContentContainer/>
-        </AppInnerContainer>
+        </div>
       </UserPageWrapper>
     );
   }
