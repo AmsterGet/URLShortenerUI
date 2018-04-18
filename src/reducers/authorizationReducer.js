@@ -5,7 +5,6 @@ const initialState = {
   isError: false,
   errorMessage: "",
   userData: false,
-  links: false,
 };
 
 export default function (state = initialState, action) {
@@ -21,7 +20,6 @@ export default function (state = initialState, action) {
     return {
       ...state,
       userData: payload.userData,
-      links: payload.links,
       errorMessage: "",
       isLoading: false,
     };
@@ -43,7 +41,6 @@ export default function (state = initialState, action) {
     return {
       ...state,
       userData: payload.userData,
-      links: [],
       errorMessage: "",
       isLoading: false,
     };
@@ -65,7 +62,6 @@ export default function (state = initialState, action) {
     return {
       ...state,
       userData: false,
-      links: false,
       errorMessage: "",
       isLoading: false,
     };

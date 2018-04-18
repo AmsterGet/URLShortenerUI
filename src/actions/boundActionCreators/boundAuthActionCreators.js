@@ -1,5 +1,9 @@
 import axios from "axios";
+import config from "../../config";
 import {
+  clearUserLinks,
+  getLinksSuccess,
+  getLinksError,
   signInSuccess,
   signInError,
   signUpSuccess,
@@ -12,18 +16,19 @@ export function boundSignIn(dispatch) {
   return (userData) => {
     axios({
       method: "post",
-      url: "http://localhost:1212/signIn",
+      url: `${config.api}/signIn`,
       data: {
         login: userData.login,
         password: userData.password,
       },
     })
-      .then((response) => { // and token in future
-        // console.log(response);
+      .then((response) => {
         dispatch(signInSuccess(response.data));
+        dispatch(getLinksSuccess(response.data.links));
       })
       .catch((error) => {
         dispatch(signInError(error.response.data));
+        dispatch(getLinksError(error.response.data));
       });
   };
 }
@@ -32,7 +37,7 @@ export function boundSignUp(dispatch) {
   return (userData) => {
     axios({
       method: "post",
-      url: "http://localhost:1212/signUp",
+      url: `${config.api}/signUp`,
       data: {
         login: userData.login,
         password: userData.password,
@@ -40,7 +45,7 @@ export function boundSignUp(dispatch) {
         mail: userData.mail,
       },
     })
-      .then((response) => { // and token in future
+      .then((response) => {
         dispatch(signUpSuccess({
           login: userData.login,
           name: userData.name,
@@ -57,11 +62,12 @@ export function boundSignOut(dispatch) {
   return (data) => {
     axios({
       method: "post",
-      url: "http://localhost:1212/signOut",
+      url: `${config.api}/signOut`,
       data,
     })
       .then((response) => {
         dispatch(signOutSuccess(response.data));
+        dispatch(clearUserLinks(false));
       })
       .catch((error) => {
         dispatch(signOutError(error.response.data));

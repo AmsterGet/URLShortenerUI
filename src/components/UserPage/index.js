@@ -15,7 +15,7 @@ export default class UserPage extends React.Component {
     return (
       <UserPageWrapper>
         <div className="inner-container">
-          <UserContentContainer/>
+          <UserContentContainer userLogin={this.props.match.params.login}/>
         </div>
       </UserPageWrapper>
     );

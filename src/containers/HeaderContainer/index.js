@@ -3,7 +3,6 @@ import boundActionCreators from "../../actions/boundActionCreators/";
 import Header from "../../components/Header/";
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     userData: state.user.userData,
     isLoading: state.user.isLoading,

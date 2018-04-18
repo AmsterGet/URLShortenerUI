@@ -21,7 +21,7 @@ export default class UserContent extends React.Component {
           <InfoParagraph>
             There are your links!
           </InfoParagraph>
-          <NewLinkPopup/>
+          <NewLinkPopup addLink={this.props.addLink}/>
           <LinksTable links={this.props.links}
                       userData={this.props.userData}/>
         </UserPageWrapper> : <Redirect to="/"/> }

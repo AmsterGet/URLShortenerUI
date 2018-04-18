@@ -50,9 +50,9 @@ export default class LinksTable extends React.Component {
           {this.props.links.map( (link, index) => (
             <TableRow key={index}>
               <TableRowColumn style={customContentStyle}>
-                <a href={`${config.api + link.shortUrl}`}
+                <a href={`${config.api}/${link.shortUrl}`}
                    className="text-info table-link">
-                  {config.api + link.shortUrl}
+                  {`${config.api}/${link.shortUrl}`}
                 </a>
               </TableRowColumn>
               <TableRowColumn className={this.props.userData ? "media-table-column" : ""}>

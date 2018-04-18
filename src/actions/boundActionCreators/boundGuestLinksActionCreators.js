@@ -1,4 +1,5 @@
 import axios from "axios";
+import config from "../../config";
 import {
   guestLinkInfoSuccess,
   guestLinkInfoError,
@@ -10,7 +11,7 @@ export function boundGuestLinkInfo(dispatch) {
   return (data) => {
     axios({
       method: "get",
-      url: `http://localhost:1212/${data.shortLink}/info`,
+      url: `${config.api}/${data.shortLink}/info`,
     })
       .then((response) => {
         dispatch(guestLinkInfoSuccess(response.data));
@@ -25,7 +26,7 @@ export function boundGuestLinksByTagName(dispatch) {
   return (data) => {
     axios({
       method: "get",
-      url: `http://localhost:1212/${data.shortUrl}/info/${data.tagName}`,
+      url: `${config.api}/${data.shortUrl}/info/${data.tagName}`,
     })
       .then((response) => {
         dispatch(guestLinksByTagNameSuccess(response.data));

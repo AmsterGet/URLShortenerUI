@@ -1,14 +1,12 @@
 import { connect } from "react-redux";
 import boundActionCreators from "../../actions/boundActionCreators/";
-import LinkInfoContainer from "../../components/HomePage/LinkInfoSection";
+import LinkInfoSection from "../../components/HomePage/LinkInfoSection";
 
 function mapStateToProps(state) {
   return {
-    isLoading: state.isLoading,
-    isError: state.isError,
-    errorMessage: state.errorMessage,
-    link: state.link,
-    links: state.links,
+    isLoading: state.guest.isLoading,
+    isError: state.guest.isError,
+    errorMessage: state.guest.errorMessage,
   };
 }
 
@@ -21,4 +19,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(LinkInfoContainer);
+)(LinkInfoSection);
