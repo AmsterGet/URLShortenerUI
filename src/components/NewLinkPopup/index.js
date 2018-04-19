@@ -58,7 +58,7 @@ export default class NewLinkPopup extends React.PureComponent {
                    fullWidth={true}
                    onChange={this.handleLinkChange}/>
         <br/>
-        <TextField floatingLabelText="Link description"
+        <TextField floatingLabelText="Link's description"
                    multiLine={true}
                    rows={2}
                    fullWidth={true}

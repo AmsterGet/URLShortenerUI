@@ -4,8 +4,8 @@ import {
   TableHeader,
   TableBody,
 } from 'material-ui/Table';
-import TableHead from "./TableHead";
-import TableContent from "./TableContent";
+import LinksTableHeader from "./LinksTableHeader/index";
+import LinksTableBody from "./LinksTableBody/index";
 
 export default class LinksTable extends React.Component {
   state = {
@@ -17,22 +17,18 @@ export default class LinksTable extends React.Component {
 
   render() {
     return (
-      <Table
-        fixedHeader={this.state.fixedHeader}
-      >
+      <Table fixedHeader={this.state.fixedHeader}>
         <TableHeader displaySelectAll={this.props.showCheckboxes}
                      adjustForCheckbox={this.props.showCheckboxes}>
-          <TableHead userData={this.props.userData}
-                     showCheckboxes={this.state.showCheckboxes}/>
+          <LinksTableHeader userData={this.props.userData}/>
         </TableHeader>
         <TableBody displayRowCheckbox={this.props.showCheckboxes}
                    deselectOnClickaway={this.props.deselectOnClickaway}
                    showRowHover={this.props.showRowHover}>
-          <TableContent userData={this.props.userData}
-                        links={this.props.links}
-                        showCheckboxes={this.state.showCheckboxes}
-                        showRowHover={this.state.showRowHover}
-                        deselectOnClickaway={this.state.deselectOnClickaway}/>
+          <LinksTableBody userData={this.props.userData}
+                          links={this.props.links}
+                          editLink={this.props.editLink}
+                          removeLink={this.props.removeLink}/>
         </TableBody>
       </Table>
     );

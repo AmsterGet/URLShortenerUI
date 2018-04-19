@@ -35,16 +35,22 @@ export default function (state = userLinksInitialState, action) {
       ...state,
       errorMessage: "",
       isLoading: false,
-      links: [...state.links, {
-        originalUrl: payload.originalUrl,
-        shortUrl: payload.shortUrl,
-        postDate: payload.postDate,
-        transitions: payload.transitions,
-        description: payload.description,
-        tags: payload.tags,
-      }],
+      links: [...state.links, payload.link],
     };
   case addLinkRequests.ERROR:
+    return {
+      ...state,
+      errorMessage: payload,
+      isLoading: false,
+      isError: true,
+    };
+
+  case removeLinkRequests.SUCCESS:
+    return {
+      ...state,
+      links: state.links.filter(link => link.shortUrl !== payload.link.shortUrl),
+    };
+  case removeLinkRequests.ERROR:
     return {
       ...state,
       errorMessage: payload,
@@ -55,9 +61,9 @@ export default function (state = userLinksInitialState, action) {
   case editLinkRequests.SUCCESS:
     return {
       ...state,
-      links: [...state.links, { // DEBUG IT!!
-
-      }],
+      links: [...state.links.filter(link => link.shortUrl !== payload.link.shortUrl),
+        payload.link,
+      ],
     };
   case editLinkRequests.ERROR:
     return {

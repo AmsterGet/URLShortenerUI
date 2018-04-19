@@ -17,14 +17,18 @@ export default class UserContent extends React.Component {
   render() {
     return (
       <div>
-        { this.props.links ? <UserPageWrapper>
-          <InfoParagraph>
-            There are your links!
-          </InfoParagraph>
-          <NewLinkPopup addLink={this.props.addLink}/>
-          <LinksTable links={this.props.links}
-                      userData={this.props.userData}/>
-        </UserPageWrapper> : <Redirect to="/"/> }
+        { this.props.userData ?
+          (this.props.links ? <UserPageWrapper>
+            <InfoParagraph>
+              There are your links!
+            </InfoParagraph>
+            <NewLinkPopup addLink={this.props.addLink}/>
+            <LinksTable links={this.props.links}
+                        editLink={this.props.editLink}
+                        removeLink={this.props.removeLink}
+                        userData={this.props.userData}/>
+          </UserPageWrapper> : "")
+          : <Redirect to="/"/> }
       </div>
     );
   }

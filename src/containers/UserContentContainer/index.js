@@ -16,8 +16,8 @@ function mapDispatchToProps(dispatch, ownProps) {
   return {
     getLinks: boundActionCreators.boundGetLinks(dispatch),
     addLink: boundActionCreators.boundAddLink(dispatch, ownProps),
-    // updateLink: boundActionCreators.boundUpdateLink(dispatch),
-    // removeLink: boundActionCreators.boundRemoveLink(dispatch),
+    removeLink: boundActionCreators.boundRemoveLink(dispatch, ownProps),
+    editLink: boundActionCreators.boundEditLink(dispatch, ownProps),
   };
 }
 
