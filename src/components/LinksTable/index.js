@@ -1,17 +1,11 @@
 import React from "react";
 import {
   Table,
-  TableBody,
   TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn,
+  TableBody,
 } from 'material-ui/Table';
-import config from "../../config";
-
-const customContentStyle = {
-  width: "auto",
-};
+import TableHead from "./TableHead";
+import TableContent from "./TableContent";
 
 export default class LinksTable extends React.Component {
   state = {
@@ -26,52 +20,19 @@ export default class LinksTable extends React.Component {
       <Table
         fixedHeader={this.state.fixedHeader}
       >
-        <TableHeader displaySelectAll={this.state.showCheckboxes}
-                     adjustForCheckbox={this.state.showCheckboxes}>
-          <TableRow>
-            <TableHeaderColumn tooltip="Short Url">Short Url</TableHeaderColumn>
-            <TableHeaderColumn className={this.props.userData ? "media-table-column" : ""} tooltip="Original Url">
-              Original Url
-            </TableHeaderColumn>
-            <TableHeaderColumn className="media-table-column" tooltip="Description">Description</TableHeaderColumn>
-            <TableHeaderColumn className="media-table-column" tooltip="Post date">Post date</TableHeaderColumn>
-            { this.props.userData ? <TableHeaderColumn tooltip="Transitions">
-                                     Transitions
-                                   </TableHeaderColumn> : ""
-            }
-          </TableRow>
+        <TableHeader displaySelectAll={this.props.showCheckboxes}
+                     adjustForCheckbox={this.props.showCheckboxes}>
+          <TableHead userData={this.props.userData}
+                     showCheckboxes={this.state.showCheckboxes}/>
         </TableHeader>
-        <TableBody
-          displayRowCheckbox={this.state.showCheckboxes}
-          deselectOnClickaway={this.state.deselectOnClickaway}
-          showRowHover={this.state.showRowHover}
-          stripedRows={this.state.stripedRows}
-        >
-          {this.props.links.map( (link, index) => (
-            <TableRow key={index}>
-              <TableRowColumn style={customContentStyle}>
-                <a href={`${config.api}/${link.shortUrl}`}
-                   className="text-info table-link">
-                  {`${config.api}/${link.shortUrl}`}
-                </a>
-              </TableRowColumn>
-              <TableRowColumn className={this.props.userData ? "media-table-column" : ""}>
-                <a href={`${link.originalUrl}`}>
-                  {link.originalUrl}
-                </a>
-              </TableRowColumn>
-              <TableRowColumn className="media-table-column">
-                {link.description}
-              </TableRowColumn>
-              <TableRowColumn className="media-table-column">
-                {new Date(link.postDate).toDateString()}
-              </TableRowColumn>
-              { this.props.userData ? <TableRowColumn >
-                                       {link.transitions}
-                                      </TableRowColumn> : ""
-              }
-            </TableRow>
-          ))}
+        <TableBody displayRowCheckbox={this.props.showCheckboxes}
+                   deselectOnClickaway={this.props.deselectOnClickaway}
+                   showRowHover={this.props.showRowHover}>
+          <TableContent userData={this.props.userData}
+                        links={this.props.links}
+                        showCheckboxes={this.state.showCheckboxes}
+                        showRowHover={this.state.showRowHover}
+                        deselectOnClickaway={this.state.deselectOnClickaway}/>
         </TableBody>
       </Table>
     );

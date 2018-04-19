@@ -24,7 +24,6 @@ export const getLinksError = data => ({
 });
 
 export const addLinkSuccess = (link) => {
-  console.log(link);
   return ({
     type: addLinkRequests.SUCCESS,
     payload: {
@@ -37,10 +36,10 @@ export const addLinkError = data => ({
   payload: data,
 });
 
-export const editLinkSuccess = links => ({
+export const editLinkSuccess = link => ({
   type: editLinkRequests.SUCCESS,
   payload: {
-    links,
+    link,
   },
 });
 export const editLinkError = data => ({
@@ -48,10 +47,10 @@ export const editLinkError = data => ({
   payload: data,
 });
 
-export const removeLinkSuccess = links => ({
+export const removeLinkSuccess = link => ({
   type: removeLinkRequests.SUCCESS,
   payload: {
-    links,
+    link,
   },
 });
 export const removeLinkError = data => ({

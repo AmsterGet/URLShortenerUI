@@ -26,6 +26,12 @@ export default class UserContent extends React.Component {
                       userData={this.props.userData}/>
         </UserPageWrapper> : <Redirect to="/"/> }
       </div>
-  );
+    );
+  }
+
+  componentDidMount() {
+    this.props.getLinks({
+      login: this.props.userData.login,
+    });
   }
 }

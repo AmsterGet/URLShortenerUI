@@ -4,7 +4,7 @@ const userLinksInitialState = {
   isLoading: false,
   isError: false,
   errorMessage: "",
-  links: [],
+  links: false,
 };
 
 export default function (state = userLinksInitialState, action) {
@@ -50,6 +50,21 @@ export default function (state = userLinksInitialState, action) {
       errorMessage: payload,
       isLoading: false,
       isError: true,
+    };
+
+  case editLinkRequests.SUCCESS:
+    return {
+      ...state,
+      links: [...state.links, { // DEBUG IT!!
+
+      }],
+    };
+  case editLinkRequests.ERROR:
+    return {
+      ...state,
+      errorMessage: "",
+      isLoading: false,
+      links: payload.links,
     };
   default:
     return state;
