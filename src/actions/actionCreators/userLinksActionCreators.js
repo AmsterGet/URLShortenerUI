@@ -23,14 +23,12 @@ export const getLinksError = data => ({
   payload: data,
 });
 
-export const addLinkSuccess = (link) => {
-  return ({
-    type: addLinkRequests.SUCCESS,
-    payload: {
-      ...link,
-    },
-  });
-};
+export const addLinkSuccess = link => ({
+  type: addLinkRequests.SUCCESS,
+  payload: {
+    link,
+  },
+});
 export const addLinkError = data => ({
   type: addLinkRequests.ERROR,
   payload: data,

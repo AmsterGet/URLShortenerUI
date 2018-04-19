@@ -12,6 +12,8 @@ import {
 import {
   boundGetLinks,
   boundAddLink,
+  boundRemoveLink,
+  boundEditLink,
 } from "./boundUserLinksActionCreators";
 
 export default {
@@ -20,6 +22,8 @@ export default {
   boundSignOut,
   boundGetLinks,
   boundAddLink,
+  boundRemoveLink,
+  boundEditLink,
   boundGuestLinkInfo,
   boundGuestLinksByTagName,
 };

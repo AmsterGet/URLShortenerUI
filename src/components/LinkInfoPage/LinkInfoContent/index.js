@@ -89,7 +89,7 @@ export default class LinkInfoContent extends React.Component {
 
             <InfoContentWrapper>
               <SingleInfoContainer>
-                <span>Link description</span>
+                <span>Link's description</span>
                 <p className="text-info">
                   {this.props.description}
                 </p>
