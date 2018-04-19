@@ -1,24 +1,45 @@
 import {
+  getLinksRequests,
   addLinkRequests,
   editLinkRequests,
   removeLinkRequests,
+  CLEAR_USER_LINKS,
 } from "../actionTypes/index";
 
-export const addLinkSuccess = link => ({
-  type: addLinkRequests.SUCCESS,
+export const clearUserLinks = clearedValue => ({
+  type: CLEAR_USER_LINKS,
   payload: {
-    link,
+    links: clearedValue,
   },
 });
+export const getLinksSuccess = links => ({
+  type: getLinksRequests.SUCCESS,
+  payload: {
+    links,
+  },
+});
+export const getLinksError = data => ({
+  type: getLinksRequests.ERROR,
+  payload: data,
+});
+
+export const addLinkSuccess = (link) => {
+  return ({
+    type: addLinkRequests.SUCCESS,
+    payload: {
+      ...link,
+    },
+  });
+};
 export const addLinkError = data => ({
   type: addLinkRequests.ERROR,
   payload: data,
 });
 
-export const editLinkSuccess = links => ({
+export const editLinkSuccess = link => ({
   type: editLinkRequests.SUCCESS,
   payload: {
-    links,
+    link,
   },
 });
 export const editLinkError = data => ({
@@ -26,10 +47,10 @@ export const editLinkError = data => ({
   payload: data,
 });
 
-export const removeLinkSuccess = links => ({
+export const removeLinkSuccess = link => ({
   type: removeLinkRequests.SUCCESS,
   payload: {
-    links,
+    link,
   },
 });
 export const removeLinkError = data => ({

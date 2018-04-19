@@ -10,8 +10,12 @@ export const signUpRequests = createAsyncActionTypes("SIGN_UP");
 
 export const signOutRequests = createAsyncActionTypes("SIGN_OUT");
 
+export const getLinksRequests = createAsyncActionTypes("GET_LINKS");
+
 export const addLinkRequests = createAsyncActionTypes("ADD_LINK");
 
 export const editLinkRequests = createAsyncActionTypes("EDIT_LINK");
 
 export const removeLinkRequests = createAsyncActionTypes("REMOVE_LINK");
+
+export const CLEAR_USER_LINKS = "CLEAR_USER_LINKS";

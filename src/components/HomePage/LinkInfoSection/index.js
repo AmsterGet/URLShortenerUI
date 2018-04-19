@@ -4,7 +4,6 @@ import styled from "styled-components";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
 import InfoParagraph from "../../InfoParagraph";
-import AppInnerContainer from "../../AppInnerContainer";
 
 const LinkInfoSectionWrapper = styled.section`
     display: flex;

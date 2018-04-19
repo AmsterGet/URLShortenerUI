@@ -81,14 +81,13 @@ export default class NewLinkPopup extends React.PureComponent {
   };
 
   handleSubmit = () => {
-    let tagsArray = this.state.tags;
-    tagsArray = tagsArray.replace(/[,\s]+/gm, " ").split(" ");
-    // this.props.addLink({ // to dispatch into redux
-    //   originalUrl: this.state.originalUrl,
-    //   description: this.state.description,
-    //   tags: tagsArray,
-    // });
-    console.log(this.state.originalUrl + "  " + this.state.description + "  " + tagsArray);
+    let tagsToDispatch = this.state.tags;
+    tagsToDispatch = tagsToDispatch.replace(/[,\s]+/gm, ", ");
+    this.props.addLink({ // to dispatch into redux
+      originalUrl: this.state.originalUrl,
+      description: this.state.description,
+      tags: tagsToDispatch,
+    });
     this.handleClose();
   };
 
