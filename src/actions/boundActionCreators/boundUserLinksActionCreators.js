@@ -16,7 +16,7 @@ export function boundGetLinks(dispatch) {
     axios({
       method: "get",
       url: `${config.api}/user/${data.login}/links/`,
-      headers: { withCredentials: true },
+      withCredentials: true,
     })
       .then((response) => {
         dispatch(getLinksSuccess(response.data.links));
@@ -33,6 +33,7 @@ export function boundAddLink(dispatch, ownProps) {
       method: "post",
       url: `${config.api}/user/${ownProps.userLogin}/links/`,
       data,
+      withCredentials: true,
     })
       .then((response) => {
         dispatch(addLinkSuccess(response.data));
@@ -49,6 +50,7 @@ export function boundRemoveLink(dispatch, ownProps) {
       method: "delete",
       url: `${config.api}/user/${ownProps.userLogin}/links/`,
       data,
+      withCredentials: true,
     })
       .then((response) => {
         dispatch(removeLinkSuccess(data));
@@ -65,6 +67,7 @@ export function boundEditLink(dispatch, ownProps) {
       method: "put",
       url: `${config.api}/user/${ownProps.userLogin}/links/`,
       data,
+      withCredentials: true,
     })
       .then((response) => {
         console.log(response.data);
