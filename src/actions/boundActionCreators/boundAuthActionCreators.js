@@ -21,6 +21,7 @@ export function boundSignIn(dispatch) {
         login: userData.login,
         password: userData.password,
       },
+      withCredentials: true,
     })
       .then((response) => {
         dispatch(signInSuccess(response.data));
@@ -64,6 +65,7 @@ export function boundSignOut(dispatch) {
       method: "post",
       url: `${config.api}/signOut`,
       data,
+      withCredentials: true,
     })
       .then((response) => {
         dispatch(signOutSuccess(response.data));
