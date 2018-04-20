@@ -16,6 +16,7 @@ export function boundGetLinks(dispatch) {
     axios({
       method: "get",
       url: `${config.api}/user/${data.login}/links/`,
+      headers: { withCredentials: true },
     })
       .then((response) => {
         dispatch(getLinksSuccess(response.data.links));
