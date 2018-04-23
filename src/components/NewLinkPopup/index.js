@@ -4,6 +4,7 @@ import Dialog from "material-ui/Dialog";
 import FlatButton from "material-ui/FlatButton";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
+import SnackBar from "../SnackBar";
 
 const NewLinkPopupWrapper = styled.div`
   display: flex;
@@ -17,9 +18,11 @@ export default class NewLinkPopup extends React.PureComponent {
     super(props);
     this.state = {
       open: false,
+      openSnackBar: false,
       originalUrl: "",
       description: "",
       tags: "",
+      snackMessage: "Fill in all fields, please!",
     };
   }
 
@@ -28,7 +31,7 @@ export default class NewLinkPopup extends React.PureComponent {
       <FlatButton
         label="Cancel"
         primary={true}
-        onClick={this.handleClose}
+        onClick={this.handlePopupOpen}
       />,
       <FlatButton
         label="Submit"
@@ -43,15 +46,19 @@ export default class NewLinkPopup extends React.PureComponent {
           <RaisedButton
             label="Shorten new link"
             primary={true}
-            onClick={this.handleOpen}
+            onClick={this.handlePopupOpen}
           />
         </NewLinkPopupWrapper>
+        <SnackBar openSnackBar={this.state.openSnackBar}
+                  handleSnackBarOpen={this.handleSnackBarOpen}
+                  snackMessage={this.state.snackMessage}
+        />
         <Dialog
           title="Fill in all fields, please!"
           actions={actions}
           modal={true}
           open={this.state.open}
-          onRequestClose={this.handleClose}
+          onRequestClose={this.handlePopupOpen}
           autoScrollBodyContent={true}
         >
         <TextField floatingLabelText="Your really big link here"
@@ -72,15 +79,23 @@ export default class NewLinkPopup extends React.PureComponent {
     );
   }
 
-  handleOpen = () => {
-    this.setState({ open: true });
+  handlePopupOpen = () => {
+    this.setState({
+      open: !this.state.open,
+    });
   };
 
-  handleClose = () => {
-    this.setState({ open: false });
+  handleSnackBarOpen = () => {
+    this.setState({
+      openSnackBar: !this.state.openSnackBar,
+    });
   };
 
   handleSubmit = () => {
+    if (!this.isFullFilling()) {
+      this.handleSnackBarOpen();
+      return;
+    }
     let tagsToDispatch = this.state.tags;
     tagsToDispatch = tagsToDispatch.replace(/[,\s]+/gm, ", ");
     this.props.addLink({ // to dispatch into redux
@@ -88,7 +103,23 @@ export default class NewLinkPopup extends React.PureComponent {
       description: this.state.description,
       tags: tagsToDispatch,
     });
-    this.handleClose();
+    this.handlePopupOpen();
+  };
+
+  isFullFilling = () => {
+    let flag = true;
+    if (!this.state.originalUrl) {
+      flag = false;
+    }
+
+    if (!this.state.description) {
+      flag = false;
+    }
+
+    if (!this.state.tags) {
+      flag = false;
+    }
+    return flag;
   };
 
   handleLinkChange = (event, newValue) => {

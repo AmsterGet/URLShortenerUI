@@ -17,19 +17,19 @@ export function boundSignIn(dispatch) {
     axios({
       method: "post",
       url: `${config.api}/signIn`,
+      withCredentials: true,
       data: {
         login: userData.login,
         password: userData.password,
       },
-      withCredentials: true,
     })
       .then((response) => {
         dispatch(signInSuccess(response.data));
-        dispatch(getLinksSuccess(response.data.links));
+        // dispatch(getLinksSuccess(response.data.links));
       })
       .catch((error) => {
         dispatch(signInError(error.response.data));
-        dispatch(getLinksError(error.response.data));
+        // dispatch(getLinksError(error.response.data));
       });
   };
 }
@@ -39,6 +39,7 @@ export function boundSignUp(dispatch) {
     axios({
       method: "post",
       url: `${config.api}/signUp`,
+      withCredentials: true,
       data: {
         login: userData.login,
         password: userData.password,
@@ -48,9 +49,9 @@ export function boundSignUp(dispatch) {
     })
       .then((response) => {
         dispatch(signUpSuccess({
-          login: userData.login,
-          name: userData.name,
-          mail: userData.mail,
+          login: response.data.login,
+          name: response.data.name,
+          mail: response.data.mail,
         }));
       })
       .catch((error) => {

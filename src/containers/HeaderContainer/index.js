@@ -8,7 +8,6 @@ function mapStateToProps(state) {
     isLoading: state.user.isLoading,
     isError: state.user.isError,
     errorMessage: state.user.errorMessage,
-    message: state.user.message,
   };
 }
 
