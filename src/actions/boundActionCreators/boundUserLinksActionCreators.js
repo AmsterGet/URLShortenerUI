@@ -29,11 +29,12 @@ export function boundGetLinks(dispatch) {
 
 export function boundAddLink(dispatch, ownProps) {
   return (data) => {
+    console.log(ownProps);
     axios({
       method: "post",
       url: `${config.api}/user/${ownProps.userLogin}/links/`,
-      data,
       withCredentials: true,
+      data,
     })
       .then((response) => {
         dispatch(addLinkSuccess(response.data));
@@ -49,8 +50,8 @@ export function boundRemoveLink(dispatch, ownProps) {
     axios({
       method: "delete",
       url: `${config.api}/user/${ownProps.userLogin}/links/`,
-      data,
       withCredentials: true,
+      data,
     })
       .then((response) => {
         dispatch(removeLinkSuccess(data));
@@ -66,8 +67,8 @@ export function boundEditLink(dispatch, ownProps) {
     axios({
       method: "put",
       url: `${config.api}/user/${ownProps.userLogin}/links/`,
-      data,
       withCredentials: true,
+      data,
     })
       .then((response) => {
         console.log(response.data);
