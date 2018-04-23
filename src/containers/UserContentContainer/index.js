@@ -14,7 +14,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
-    // signIn: boundActionCreators.boundSignIn(dispatch),
     getLinks: boundActionCreators.boundGetLinks(dispatch),
     addLink: boundActionCreators.boundAddLink(dispatch, ownProps),
     removeLink: boundActionCreators.boundRemoveLink(dispatch, ownProps),

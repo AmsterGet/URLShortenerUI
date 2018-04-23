@@ -2,8 +2,6 @@ import axios from "axios";
 import config from "../../config";
 import {
   clearUserLinks,
-  getLinksSuccess,
-  getLinksError,
   signInSuccess,
   signInError,
   signUpSuccess,
@@ -11,6 +9,7 @@ import {
   signOutSuccess,
   signOutError,
 } from "../actionCreators/";
+import utils from "../../utils";
 
 export function boundSignIn(dispatch) {
   return (userData) => {
@@ -24,12 +23,16 @@ export function boundSignIn(dispatch) {
       },
     })
       .then((response) => {
-        dispatch(signInSuccess(response.data));
-        // dispatch(getLinksSuccess(response.data.links));
+        const resUserData = {
+          login: response.data.login,
+          name: response.data.name,
+          mail: response.data.mail,
+        };
+        utils.localStorage.writeDataByKey("userData", resUserData);
+        dispatch(signInSuccess(resUserData));
       })
       .catch((error) => {
         dispatch(signInError(error.response.data));
-        // dispatch(getLinksError(error.response.data));
       });
   };
 }
@@ -48,11 +51,13 @@ export function boundSignUp(dispatch) {
       },
     })
       .then((response) => {
-        dispatch(signUpSuccess({
+        const resUserData = {
           login: response.data.login,
           name: response.data.name,
           mail: response.data.mail,
-        }));
+        };
+        utils.localStorage.writeDataByKey("userData", resUserData);
+        dispatch(signUpSuccess(resUserData));
       })
       .catch((error) => {
         dispatch(signUpError(error.response.data));
@@ -69,6 +74,7 @@ export function boundSignOut(dispatch) {
       withCredentials: true,
     })
       .then((response) => {
+        utils.localStorage.removeDataByKey("userData");
         dispatch(signOutSuccess(response.data));
         dispatch(clearUserLinks(false));
       })
