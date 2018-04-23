@@ -35,7 +35,6 @@ const Logo = styled.span`
 
 export default class Header extends React.Component {
   render() {
-    console.log("rerender");
     return (
       <HeaderWrapper>
         <div className="inner-container">
