@@ -28,7 +28,7 @@ export function boundSignIn(dispatch) {
           name: response.data.name,
           mail: response.data.mail,
         };
-        utils.localStorage.writeDataInLocalStorage("userData", resUserData);
+        utils.localStorage.writeDataByKey("userData", resUserData);
         dispatch(signInSuccess(resUserData));
       })
       .catch((error) => {
@@ -56,7 +56,7 @@ export function boundSignUp(dispatch) {
           name: response.data.name,
           mail: response.data.mail,
         };
-        utils.localStorage.writeDataInLocalStorage("userData", resUserData);
+        utils.localStorage.writeDataByKey("userData", resUserData);
         dispatch(signUpSuccess(resUserData));
       })
       .catch((error) => {
@@ -74,6 +74,7 @@ export function boundSignOut(dispatch) {
       withCredentials: true,
     })
       .then((response) => {
+        utils.localStorage.removeDataByKey("userData");
         dispatch(signOutSuccess(response.data));
         dispatch(clearUserLinks(false));
       })
