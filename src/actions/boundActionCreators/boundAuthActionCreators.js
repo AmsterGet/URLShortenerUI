@@ -65,6 +65,15 @@ export function boundSignUp(dispatch) {
   };
 }
 
+export function boundOpenSavedSession(dispatch) {
+  return () => {
+    const userData = utils.localStorage.getDataByKey("userData");
+    if (userData) {
+      dispatch(signInSuccess(userData));
+    }
+  };
+}
+
 export function boundSignOut(dispatch) {
   return (data) => {
     axios({
