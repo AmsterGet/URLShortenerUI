@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import AuthComponent from "../AuthComponent"
+import AuthComponent from "../AuthComponent";
 
 const HeaderWrapper = styled.header`
     display: flex;
@@ -35,7 +35,6 @@ const Logo = styled.span`
 
 export default class Header extends React.Component {
   render() {
-
     return (
       <HeaderWrapper>
         <div className="inner-container">
@@ -53,5 +52,9 @@ export default class Header extends React.Component {
         </div>
       </HeaderWrapper>
     );
+  }
+
+  componentDidMount() {
+    this.props.openSavedSession();
   }
 }

@@ -1,4 +1,5 @@
 import {
+  boundOpenSavedSession,
   boundSignIn,
   boundSignUp,
   boundSignOut,
@@ -17,6 +18,7 @@ import {
 } from "./boundUserLinksActionCreators";
 
 export default {
+  boundOpenSavedSession,
   boundSignIn,
   boundSignUp,
   boundSignOut,

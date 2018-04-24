@@ -4,7 +4,6 @@ import { Redirect } from "react-router-dom";
 import LinksTable from "../../LinksTable";
 import InfoParagraph from "../../InfoParagraph";
 import NewLinkPopup from "../../NewLinkPopup";
-import utils from "../../../utils";
 
 const UserPageWrapper = styled.div`
     display: flex;
@@ -16,8 +15,6 @@ const UserPageWrapper = styled.div`
 
 export default class UserContent extends React.Component {
   render() {
-    // const userData = this.props.userData || utils.localStorage.getDataByKey("userData");
-    // Debug it for excellent page's resize
     return (
       <div>
         { this.props.userData ?

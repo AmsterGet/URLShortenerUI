@@ -14,6 +14,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     signIn: boundActionCreators.boundSignIn(dispatch),
+    openSavedSession: boundActionCreators.boundOpenSavedSession(dispatch),
     signUp: boundActionCreators.boundSignUp(dispatch),
     signOut: boundActionCreators.boundSignOut(dispatch),
   };
