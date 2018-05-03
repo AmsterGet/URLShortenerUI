@@ -5,6 +5,7 @@ import FlatButton from "material-ui/FlatButton";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import SnackBar from "../SnackBar";
+import AttachmentInput from "../AttachmentInput";
 
 const NewLinkPopupWrapper = styled.div`
   display: flex;
@@ -74,6 +75,7 @@ export default class NewLinkPopup extends React.PureComponent {
         <TextField floatingLabelText="Link's tags for provide fast search"
                    fullWidth={true}
                    onChange={this.handleTagsChange}/>
+        <AttachmentInput/>
         </Dialog>
       </div>
     );

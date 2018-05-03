@@ -67,6 +67,7 @@ export default class LinksTableBody extends React.Component {
                 >
                   <MenuItem primaryText="Remove"/>
                   <MenuItem primaryText="Edit"/>
+                  <MenuItem primaryText="Download CSV"/>
                 </IconMenu>
               </TableRowColumn>
             </React.Fragment> : "" }
