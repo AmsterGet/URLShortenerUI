@@ -32,7 +32,7 @@ export function boundSignIn(dispatch) {
         dispatch(signInSuccess(resUserData));
       })
       .catch((error) => {
-        dispatch(signInError(error.response.data));
+        dispatch(signInError("Wrong Login and/or password"));
       });
   };
 }

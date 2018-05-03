@@ -47,6 +47,7 @@ export default class Header extends React.Component {
               signUp = { this.props.signUp }
               signOut = { this.props.signOut }
               userData = { this.props.userData }
+              errorMessage = {this.props.errorMessage}
             />
           </HeaderInnerAligner>
         </div>

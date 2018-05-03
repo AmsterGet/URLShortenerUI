@@ -13,12 +13,14 @@ import {
 
 export function boundGetLinks(dispatch) {
   return (data) => {
+    console.log(data);
     axios({
       method: "get",
       url: `${config.api}/user/${data.login}/links/`,
       withCredentials: true,
     })
       .then((response) => {
+        // console.log(response);
         dispatch(getLinksSuccess(response.data.links));
       })
       .catch((error) => {

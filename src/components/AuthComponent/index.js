@@ -20,7 +20,7 @@ const customContentStyle = {
   maxWidth: "445px",
 };
 
-export default class AuthComponent extends React.PureComponent {
+export default class AuthComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,7 +31,9 @@ export default class AuthComponent extends React.PureComponent {
       password: null,
       name: null,
       mail: null,
-      snackMessage: "Fill in all fields, please!",
+      snackMessage: "Wrong! Check your input, please!",
+      errorMessage: "",
+      isErrorShowed: false,
     };
   }
 
@@ -63,6 +65,7 @@ export default class AuthComponent extends React.PureComponent {
 
     return (
       <div>
+        { this.checkForError() }
         { this.props.userData ?
           <div>
             <UserDataContainer>
@@ -107,10 +110,12 @@ export default class AuthComponent extends React.PureComponent {
                 </span>
               </div> }
           <TextField floatingLabelText="Login"
+                     errorText={this.props.errorMessage}
                      onChange={this.handleLoginChange}/>
           <br/>
           <TextField floatingLabelText="Password"
                      type="password"
+                     errorText={this.props.errorMessage}
                      onChange={this.handlePasswordChange}/>
           <br/>
         </Dialog>
@@ -122,6 +127,7 @@ export default class AuthComponent extends React.PureComponent {
     this.setState({
       open: !this.state.open,
       isSigningUp: this.state.open,
+      isErrorShowed: false,
     });
   };
 
@@ -158,6 +164,16 @@ export default class AuthComponent extends React.PureComponent {
       });
     this.clearState();
     this.handlePopupOpen();
+  };
+
+  checkForError = () => {
+    if (this.state.errorMessage && !this.state.open && !this.state.isErrorShowed) {
+      this.handleSnackBarOpen();
+      this.setState({
+        isErrorShowed: true,
+        errorMessage: "",
+      });
+    }
   };
 
   clearState = () => {
@@ -215,4 +231,13 @@ export default class AuthComponent extends React.PureComponent {
         mail: newValue,
     });
   };
+
+  componentWillReceiveProps(nextProps) {
+    console.log("RECEIVE");
+    if (nextProps.errorMessage) {
+      this.setState({
+        errorMessage: nextProps.errorMessage,
+      });
+    }
+  }
 }
