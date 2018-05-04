@@ -1,0 +1,12 @@
+.attach-sprite {
+    background: url("../../assets/images/attach-icon.png") no-repeat 100% 100%;
+    background-size: cover;
+    display: inline-block;
+    margin-left: 10px;
+    height: 32px;
+    width: 32px;
+}
+
+.attach-message {
+    vertical-align: super;
+}

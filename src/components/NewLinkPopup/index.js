@@ -20,6 +20,7 @@ export default class NewLinkPopup extends React.PureComponent {
     this.state = {
       open: false,
       openSnackBar: false,
+      isTextInputsDisabled: false,
       originalUrl: "",
       description: "",
       tags: "",
@@ -63,27 +64,37 @@ export default class NewLinkPopup extends React.PureComponent {
           autoScrollBodyContent={true}
         >
         <TextField floatingLabelText="Your really big link here"
+                   disabled={this.state.isTextInputsDisabled}
                    fullWidth={true}
                    onChange={this.handleLinkChange}/>
         <br/>
         <TextField floatingLabelText="Link's description"
+                   disabled={this.state.isTextInputsDisabled}
                    multiLine={true}
                    rows={2}
                    fullWidth={true}
                    onChange={this.handleDescriptionChange}/>
         <br/>
         <TextField floatingLabelText="Link's tags for provide fast search"
+                   disabled={this.state.isTextInputsDisabled}
                    fullWidth={true}
                    onChange={this.handleTagsChange}/>
-        <AttachmentInput/>
+        <AttachmentInput handleAttach={this.handleAttach}/>
         </Dialog>
       </div>
     );
   }
 
+  handleAttach = (event) => {
+    event.target.value ? this.setState({
+      isTextInputsDisabled: true,
+    }) : "";
+  };
+
   handlePopupOpen = () => {
     this.setState({
       open: !this.state.open,
+      isTextInputsDisabled: false,
     });
   };
 

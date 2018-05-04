@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import "./index.css";
 
 const Root = styled.div`
   margin-top: 30px;
@@ -7,6 +8,7 @@ const Root = styled.div`
 
 const AttachmentLabel = styled.label`
   cursor: pointer;
+  display: inline-block;
 `;
 
 const AttachmentInputWrapper = styled.input`
@@ -20,8 +22,12 @@ export default class AttachmentInput extends React.Component {
         <AttachmentLabel>
           <AttachmentInputWrapper type="file"
                                   name="file"
-                                  accept="*.csv"/>
-          <span>Мой красивый аттач</span>
+                                  accept="*.csv"
+                                  onChange={this.props.handleAttach}/> { /* FIX view of this FILE INPUT */ }
+          <span className="attach-message">
+            Or via CSV file -
+          </span>
+          <span className="attach-sprite"/>
         </AttachmentLabel>
       </Root>
     );
