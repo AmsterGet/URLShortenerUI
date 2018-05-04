@@ -4,13 +4,14 @@ import {
   signOutRequests,
 } from "../actionTypes/index";
 
-export const signInSuccess = ({ login, mail, name }) => ({
+export const signInSuccess = ({ login, mail, name, role }) => ({
   type: signInRequests.SUCCESS,
   payload: {
     userData: {
       login,
       mail,
       name,
+      role,
     },
   },
 });
@@ -19,13 +20,14 @@ export const signInError = data => ({
   payload: data,
 });
 
-export const signUpSuccess = ({ login, mail, name }) => ({
+export const signUpSuccess = ({ login, mail, name, role }) => ({
   type: signUpRequests.SUCCESS,
   payload: {
     userData: {
       login,
       mail,
       name,
+      role,
     },
   },
 });

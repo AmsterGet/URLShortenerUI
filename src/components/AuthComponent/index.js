@@ -69,14 +69,14 @@ export default class AuthComponent extends React.Component {
         { this.props.userData ?
           <div>
             <UserDataContainer>
-              <Link to={`/user/${this.props.userData.login}/links`}>
+              <Link to={`/user/${this.props.userData.login}`}>
                 {this.props.userData.name}
               </Link>
             </UserDataContainer>
             <RaisedButton label="Sign out"
                           onClick={this.handleSignOut}
                           primary={true}/>
-            <Redirect to={`/user/${this.props.userData.login}/links`}/>
+            <Redirect to={`/user/${this.props.userData.login}`}/>
           </div> :
           <RaisedButton label="Sign in"
                         onClick={this.handlePopupOpen}

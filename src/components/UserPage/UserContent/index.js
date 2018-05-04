@@ -34,9 +34,6 @@ export default class UserContent extends React.Component {
   }
 
   componentDidMount() {
-    this.props.userData ?
-      this.props.getLinks({
-        login: this.props.userData.login,
-      }) : "";
+    this.props.userData ? this.props.getLinks() : "";
   }
 }

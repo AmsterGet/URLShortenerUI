@@ -105,7 +105,7 @@ export default class NewLinkPopup extends React.PureComponent {
   };
 
   handleSubmit = () => {
-    if (!this.isFullFilling()) {
+    if (!this.isFullFilling() && !this.state.isTextInputsDisabled) {
       this.handleSnackBarOpen();
       return;
     }

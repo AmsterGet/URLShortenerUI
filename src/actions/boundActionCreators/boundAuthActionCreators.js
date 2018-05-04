@@ -27,6 +27,7 @@ export function boundSignIn(dispatch) {
           login: response.data.login,
           name: response.data.name,
           mail: response.data.mail,
+          role: response.data.role,
         };
         utils.localStorage.writeDataByKey("userData", resUserData);
         dispatch(signInSuccess(resUserData));
@@ -55,6 +56,7 @@ export function boundSignUp(dispatch) {
           login: response.data.login,
           name: response.data.name,
           mail: response.data.mail,
+          role: response.data.role,
         };
         utils.localStorage.writeDataByKey("userData", resUserData);
         dispatch(signUpSuccess(resUserData));

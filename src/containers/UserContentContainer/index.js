@@ -12,12 +12,12 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch, ownProps) {
+function mapDispatchToProps(dispatch) {
   return {
     getLinks: boundActionCreators.boundGetLinks(dispatch),
-    addLink: boundActionCreators.boundAddLink(dispatch, ownProps),
-    removeLink: boundActionCreators.boundRemoveLink(dispatch, ownProps),
-    editLink: boundActionCreators.boundEditLink(dispatch, ownProps),
+    addLink: boundActionCreators.boundAddLink(dispatch),
+    removeLink: boundActionCreators.boundRemoveLink(dispatch),
+    editLink: boundActionCreators.boundEditLink(dispatch),
   };
 }
 

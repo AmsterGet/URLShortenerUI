@@ -14,23 +14,23 @@ export default class LinksTableHeader extends React.Component {
     return (
       <React.Fragment>
         <TableRow>
-          <TableHeaderColumn tooltip="Short Url">
+          <TableHeaderColumn>
             Short Url
           </TableHeaderColumn>
-          <TableHeaderColumn className={this.props.userData ? "media-table-column" : ""} tooltip="Original Url">
+          <TableHeaderColumn className={this.props.userData ? "media-table-column" : ""}>
             Original Url
           </TableHeaderColumn>
-          <TableHeaderColumn className="media-table-column" tooltip="Description">
+          <TableHeaderColumn className="media-table-column">
             Description
           </TableHeaderColumn>
-          <TableHeaderColumn className="media-table-column" tooltip="Post date">
+          <TableHeaderColumn className="media-table-column">
             Post date
           </TableHeaderColumn>
           { this.props.userData ? <React.Fragment>
-            <TableHeaderColumn className="transitions-table-column" tooltip="Transitions">
+            <TableHeaderColumn className="transitions-table-column">
               Transitions
             </TableHeaderColumn>
-            <TableHeaderColumn className="options-table-column" style={customOptionsStyle} tooltip="Options"/>
+            <TableHeaderColumn className="options-table-column" style={customOptionsStyle}/>
           </React.Fragment> : "" }
         </TableRow>
       </React.Fragment>

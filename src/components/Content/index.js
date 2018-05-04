@@ -22,7 +22,7 @@ export default class Content extends React.Component {
         <Switch>
           <Route exact path="/" component = { HomePage } />
           <Route strict exact path="/info" component = { LinkInfoPage } />
-          <Route strict exact path="/user/:login/links" component = { UserPage } />
+          <Route strict exact path="/user/:login" component = { UserPage } />
           <Route component = { NotFoundPage } />
         </Switch>
       </ContentWrapper>

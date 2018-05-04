@@ -12,11 +12,10 @@ import {
 } from "../actionCreators/index";
 
 export function boundGetLinks(dispatch) {
-  return (data) => {
-    console.log(data);
+  return () => {
     axios({
       method: "get",
-      url: `${config.api}/user/${data.login}/links/`,
+      url: `${config.api}/user/links/`,
       withCredentials: true,
     })
       .then((response) => {
@@ -29,12 +28,11 @@ export function boundGetLinks(dispatch) {
   };
 }
 
-export function boundAddLink(dispatch, ownProps) {
+export function boundAddLink(dispatch) {
   return (data) => {
-    console.log(ownProps);
     axios({
       method: "post",
-      url: `${config.api}/user/${ownProps.userLogin}/links/`,
+      url: `${config.api}/user/links/`,
       withCredentials: true,
       data,
     })
@@ -47,11 +45,11 @@ export function boundAddLink(dispatch, ownProps) {
   };
 }
 
-export function boundRemoveLink(dispatch, ownProps) {
+export function boundRemoveLink(dispatch) {
   return (data) => {
     axios({
       method: "delete",
-      url: `${config.api}/user/${ownProps.userLogin}/links/`,
+      url: `${config.api}/user/links/`,
       withCredentials: true,
       data,
     })
@@ -64,11 +62,11 @@ export function boundRemoveLink(dispatch, ownProps) {
   };
 }
 
-export function boundEditLink(dispatch, ownProps) {
+export function boundEditLink(dispatch) {
   return (data) => {
     axios({
       method: "put",
-      url: `${config.api}/user/${ownProps.userLogin}/links/`,
+      url: `${config.api}/user/links/`,
       withCredentials: true,
       data,
     })
