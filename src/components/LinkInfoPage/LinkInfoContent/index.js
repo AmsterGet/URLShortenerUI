@@ -71,9 +71,9 @@ export default class LinkInfoContent extends React.Component {
 
               <SingleInfoContainer>
                 <span>Short url</span>
-                <a href={`${config.api + this.props.shortUrl}`}
+                <a href={`${config.api}/${this.props.shortUrl}`}
                    className="text-info">
-                  {config.api + this.props.shortUrl}
+                  {`${config.api}/${this.props.shortUrl}`}
                 </a>
               </SingleInfoContainer>
             </InfoContentWrapper>

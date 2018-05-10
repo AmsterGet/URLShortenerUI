@@ -1,9 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import config from "../../config";
 import "./index.css";
 
 const Root = styled.div`
   margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  @media (max-width: 650px) {
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
 const AttachmentLabel = styled.label`
@@ -22,12 +30,23 @@ const AttachmentInputWrapper = styled.input`
 `;
 
 const FileNameInfo = styled.span`
-   margin-left: 8px;
-   font-weight: bold;
-   height: 17px;
-   @media (max-width: 650px) {
-    margin: 0;
-   }
+  margin: 0 8px;
+  font-weight: bold;
+  height: 17px;
+  overflow: auto;
+  max-width: 176px;
+  border: 1px solid rgb(224, 224, 224);
+  padding: 1px;
+  border-radius: 2px;
+  @media (max-width: 650px) {
+    margin: 4px 0;
+  }
+`;
+
+const FileTemplateLink = styled.a`
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export default class AttachmentInput extends React.Component {
@@ -39,7 +58,6 @@ export default class AttachmentInput extends React.Component {
   }
 
   render() {
-    console.log(this.state.fileName);
     return (
       <Root>
         <AttachmentLabel>
@@ -51,10 +69,21 @@ export default class AttachmentInput extends React.Component {
             Or via CSV file
           </span>
           <span className="attach-sprite"/>
-          <FileNameInfo>
-            {this.state.fileName}
-          </FileNameInfo>
+          {
+            this.state.fileName ?
+              <FileNameInfo>
+                {this.state.fileName}
+              </FileNameInfo> : ""
+          }
         </AttachmentLabel>
+        <FileTemplateLink href={`${config.api}/file/template`}>
+          <span>
+            Download
+          </span>
+          <span>
+            CSV template
+          </span>
+        </FileTemplateLink>
       </Root>
     );
   }

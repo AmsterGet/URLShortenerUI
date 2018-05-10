@@ -1,6 +1,6 @@
 import {
   getLinksRequests,
-  addLinkRequests,
+  addLinksRequests,
   editLinkRequests,
   removeLinkRequests,
   CLEAR_USER_LINKS,
@@ -23,14 +23,14 @@ export const getLinksError = data => ({
   payload: data,
 });
 
-export const addLinkSuccess = link => ({
-  type: addLinkRequests.SUCCESS,
+export const addLinksSuccess = links => ({
+  type: addLinksRequests.SUCCESS,
   payload: {
-    link,
+    links,
   },
 });
-export const addLinkError = data => ({
-  type: addLinkRequests.ERROR,
+export const addLinksError = data => ({
+  type: addLinksRequests.ERROR,
   payload: data,
 });
 

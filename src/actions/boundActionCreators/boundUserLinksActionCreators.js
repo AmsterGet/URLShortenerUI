@@ -3,8 +3,8 @@ import config from "../../config";
 import {
   getLinksSuccess,
   getLinksError,
-  addLinkSuccess,
-  addLinkError,
+  addLinksSuccess,
+  addLinksError,
   removeLinkSuccess,
   removeLinkError,
   editLinkSuccess,
@@ -37,13 +37,30 @@ export function boundAddLink(dispatch) {
       data,
     })
       .then((response) => {
-        dispatch(addLinkSuccess(response.data));
+        dispatch(addLinksSuccess([response.data]));
       })
       .catch((error) => {
-        dispatch(addLinkError(error.response.data));
+        dispatch(addLinksError(error.response.data));
       });
   };
 }
+
+// export function boundAddCsvLinks(dispatch) {
+//   return (file) => {
+//     axios({
+//       method: "post",
+//       url: `${config.api}/file/csv/`,
+//       withCredentials: true,
+//       file,
+//     })
+//       .then((response) => {
+//         dispatch(addLinksSuccess(response.data));// REWRITE FOR MULTIPLE LINKS
+//       })
+//       .catch((error) => {
+//         dispatch(addLinksError(error.response.data));
+//       });
+//   };
+// }
 
 export function boundRemoveLink(dispatch) {
   return (data) => {

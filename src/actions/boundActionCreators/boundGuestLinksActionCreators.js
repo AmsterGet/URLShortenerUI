@@ -11,7 +11,7 @@ export function boundGuestLinkInfo(dispatch) {
   return (data) => {
     axios({
       method: "get",
-      url: `${config.api}/${data.shortLink}/info`,
+      url: `${config.api}/link/${data.shortLink}/info`,
     })
       .then((response) => {
         dispatch(guestLinkInfoSuccess(response.data));
@@ -26,7 +26,7 @@ export function boundGuestLinksByTagName(dispatch) {
   return (data) => {
     axios({
       method: "get",
-      url: `${config.api}/${data.shortUrl}/info/${data.tagName}`,
+      url: `${config.api}/link/${data.shortUrl}/info/${data.tagName}`,
     })
       .then((response) => {
         dispatch(guestLinksByTagNameSuccess(response.data));

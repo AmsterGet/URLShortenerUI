@@ -188,23 +188,14 @@ export default class AuthComponent extends React.Component {
   isFullFilling = () => {
     let flag = true;
     if (this.state.isSigningUp) {
-      if (!this.state.mail) {
-        flag = false;
-      }
-
-      if (!this.state.name) {
+      if (!this.state.mail || !this.state.name) {
         flag = false;
       }
     }
 
-    if (!this.state.login) {
+    if (!this.state.login || !this.state.password) {
       flag = false;
     }
-
-    if (!this.state.password) {
-      flag = false;
-    }
-
     return flag;
   };
 

@@ -15,8 +15,8 @@ import {
 } from "./guestLinksActionCreators.js";
 
 import {
-  addLinkSuccess,
-  addLinkError,
+  addLinksSuccess,
+  addLinksError,
   editLinkSuccess,
   editLinkError,
   removeLinkSuccess,
@@ -40,8 +40,8 @@ export {
   clearUserLinks,
   getLinksSuccess,
   getLinksError,
-  addLinkSuccess,
-  addLinkError,
+  addLinksSuccess,
+  addLinksError,
   editLinkSuccess,
   editLinkError,
   removeLinkSuccess,

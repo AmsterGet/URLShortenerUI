@@ -12,7 +12,7 @@ export const signOutRequests = createAsyncActionTypes("SIGN_OUT");
 
 export const getLinksRequests = createAsyncActionTypes("GET_LINKS");
 
-export const addLinkRequests = createAsyncActionTypes("ADD_LINK");
+export const addLinksRequests = createAsyncActionTypes("ADD_LINKS");
 
 export const editLinkRequests = createAsyncActionTypes("EDIT_LINK");
 

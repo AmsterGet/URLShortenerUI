@@ -121,17 +121,10 @@ export default class NewLinkPopup extends React.PureComponent {
 
   isFullFilling = () => {
     let flag = true;
-    if (!this.state.originalUrl) {
+    if (!this.state.originalUrl || !this.state.description || !this.state.tags) {
       flag = false;
     }
 
-    if (!this.state.description) {
-      flag = false;
-    }
-
-    if (!this.state.tags) {
-      flag = false;
-    }
     return flag;
   };
 
