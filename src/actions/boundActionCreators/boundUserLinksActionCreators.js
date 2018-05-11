@@ -30,6 +30,13 @@ export function boundGetLinks(dispatch) {
 
 export function boundAddLink(dispatch) {
   return (data) => {
+    // const body = {};
+    // if (data.originalUrl) {
+    //   body.data = data;
+    // } else {
+    //   body.file = data;
+    // }
+    console.log(data);
     axios({
       method: "post",
       url: `${config.api}/user/links/`,

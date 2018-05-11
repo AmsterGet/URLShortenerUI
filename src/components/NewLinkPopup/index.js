@@ -22,6 +22,7 @@ export default class NewLinkPopup extends React.PureComponent {
       open: false,
       openSnackBar: false,
       isTextInputsDisabled: false,
+      file: false,
       originalUrl: "",
       description: "",
       tags: "",
@@ -90,7 +91,7 @@ export default class NewLinkPopup extends React.PureComponent {
     if (event.target.files.length) {
       this.setState({
         isTextInputsDisabled: true,
-        file: utils.FileReader.readFile(event.target.files[0]), // unnecessary, only for Client side reading
+        file: event.target.files[0], // unnecessary, only for Client side reading
       })
     } else {
       this.setState({
@@ -118,14 +119,20 @@ export default class NewLinkPopup extends React.PureComponent {
       this.handleSnackBarOpen();
       return;
     }
-    let tagsToDispatch = this.state.tags;
-    tagsToDispatch = tagsToDispatch.replace(/[,\s]+/gm, ", ");
-    this.props.addLink({ // to dispatch into redux
-      originalUrl: this.state.originalUrl,
-      description: this.state.description,
-      tags: tagsToDispatch,
-    });
+
     this.handlePopupOpen();
+
+    if (this.state.isTextInputsDisabled) {
+      this.props.addLink(this.state.file);
+    } else {
+      let tagsToDispatch = this.state.tags;
+      tagsToDispatch = tagsToDispatch.replace(/[,\s]+/gm, ", ");
+      this.props.addLink({ // to dispatch into redux
+        originalUrl: this.state.originalUrl,
+        description: this.state.description,
+        tags: tagsToDispatch,
+      });
+    }
   };
 
   isFullFilling = () => {
