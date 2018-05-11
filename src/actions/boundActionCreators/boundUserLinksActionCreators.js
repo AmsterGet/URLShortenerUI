@@ -37,7 +37,7 @@ export function boundAddLink(dispatch) {
       data,
     })
       .then((response) => {
-        dispatch(addLinksSuccess([response.data]));
+        dispatch(addLinksSuccess(response.data));
       })
       .catch((error) => {
         dispatch(addLinksError(error.response.data));

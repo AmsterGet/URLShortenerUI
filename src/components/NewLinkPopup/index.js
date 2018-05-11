@@ -6,6 +6,7 @@ import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import SnackBar from "../SnackBar";
 import AttachmentInput from "../AttachmentInput";
+import utils from "../../utils";
 
 const NewLinkPopupWrapper = styled.div`
   display: flex;
@@ -86,9 +87,17 @@ export default class NewLinkPopup extends React.PureComponent {
   }
 
   handleAttach = (event) => {
-    event.target.value ? this.setState({
-      isTextInputsDisabled: true,
-    }) : "";
+    if (event.target.files.length) {
+      this.setState({
+        isTextInputsDisabled: true,
+        file: utils.FileReader.readFile(event.target.files[0]), // unnecessary, only for Client side reading
+      })
+    } else {
+      this.setState({
+        isTextInputsDisabled: false,
+        file: false,
+      });
+    }
   };
 
   handlePopupOpen = () => {

@@ -64,6 +64,7 @@ export default class AttachmentInput extends React.Component {
           <AttachmentInputWrapper type="file"
                                   name="file"
                                   accept=".csv"
+                                  // onLoad={this.props.handleAttach}
                                   onChange={this.handleChange}/> { /* FIX view of this FILE INPUT */ }
           <span>
             Or via CSV file
@@ -89,6 +90,11 @@ export default class AttachmentInput extends React.Component {
   }
 
   handleChange = (event) => {
+    // FR.onload = function (event){
+    //   var contents = event.target.result;
+    //   myImage.src = contents;
+    // }
+
     const fileName = event.target.value.replace(/.*\\/, "");
     this.props.handleAttach(event);
     this.setState({
