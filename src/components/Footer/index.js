@@ -13,7 +13,7 @@ const FooterContainer = styled.footer`
     font-size: 19px;
     font-family: LifehackBasic-Regular;
     font-weight: 500;
-    background-color: #8080802e;
+    background-color: rgba(128, 128, 128, 0.18);
 `;
 
 const FooterInnerAligner = styled.div`

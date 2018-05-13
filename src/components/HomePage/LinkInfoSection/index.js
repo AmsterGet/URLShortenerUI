@@ -11,7 +11,7 @@ const LinkInfoSectionWrapper = styled.section`
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    background-color: #00abff17;
+    background-color: rgba(0, 171, 255, 0.09);
     margin-top: 80px;
     padding: 30px 0;
 `;

@@ -10,7 +10,7 @@ const HeaderWrapper = styled.header`
     width: 100%;
     height: 60px;
     border-bottom: 1px solid gray;
-    background-color: #06ffc90d;
+    background-color: rgba(6, 255, 201,0.05);
     @media (max-width: 650px) {
       height: 80px;
     }

@@ -62,7 +62,7 @@ export function boundSignUp(dispatch) {
         dispatch(signUpSuccess(resUserData));
       })
       .catch((error) => {
-        dispatch(signUpError(error.response.data));
+        dispatch(signUpError("Such user already exists"));
       });
   };
 }
