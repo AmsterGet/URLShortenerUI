@@ -28,6 +28,7 @@ export default class LinksTable extends React.Component {
           <LinksTableBody userData={this.props.userData}
                           links={this.props.links}
                           editLink={this.props.editLink}
+                          getLinkInfo={this.props.getLinkInfo}
                           removeLink={this.props.removeLink}/>
         </TableBody>
       </Table>

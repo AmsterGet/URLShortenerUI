@@ -11,7 +11,7 @@ export function boundGuestLinkInfo(dispatch) {
   return (data) => {
     axios({
       method: "get",
-      url: `${config.api}/link/${data.shortLink}/info`,
+      url: `${config.api}/link/${data.shortUrl}/info`,
     })
       .then((response) => {
         dispatch(guestLinkInfoSuccess(response.data));

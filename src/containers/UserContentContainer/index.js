@@ -18,6 +18,7 @@ function mapDispatchToProps(dispatch) {
     addLink: boundActionCreators.boundAddLink(dispatch),
     removeLink: boundActionCreators.boundRemoveLink(dispatch),
     editLink: boundActionCreators.boundEditLink(dispatch),
+    getLinkInfo: boundActionCreators.boundGuestLinkInfo(dispatch),
   };
 }
 

@@ -30,18 +30,31 @@ export function boundGetLinks(dispatch) {
 
 export function boundAddLink(dispatch) {
   return (data) => {
-    // const body = {};
-    // if (data.originalUrl) {
-    //   body.data = data;
-    // } else {
-    //   body.file = data;
-    // }
     console.log(data);
+    const headers = {};
+    const requestBody = {};
+    // console.log(data);
+    if (!data.originalUrl) {
+      let formData = new FormData();
+      formData.append("file", data);
+      // formData.append("name", data.name);
+      // headers["Content-Disposition"] = `form-data; name="";datafile=""; filename=${data.name}`;
+      // headers["Content-Type"] = "application/octet-stream";
+      headers["Content-type"] = "multipart/form-data";
+      headers["Content-Disposition"] = `form-data; name="file"; filename=${data.name}"`;
+      // data = formData;
+      // headers["encType"] = "";
+      requestBody.data = formData;
+    } else {
+      requestBody.data = data;
+    }
+    console.log(requestBody);
     axios({
       method: "post",
       url: `${config.api}/user/links/`,
       withCredentials: true,
-      data,
+      headers,
+      ...requestBody,
     })
       .then((response) => {
         dispatch(addLinksSuccess(response.data));

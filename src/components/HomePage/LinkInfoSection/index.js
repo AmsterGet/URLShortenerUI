@@ -27,7 +27,7 @@ export default class LinkInfoSection extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      shortLink: null,
+      shortUrl: null,
       isInfoButtonClicked: false,
     };
   }
@@ -60,14 +60,14 @@ export default class LinkInfoSection extends React.Component {
     console.log(newValue);
     newValue = newValue.replace(/^http([\s\S]*)[/]/gim, "");
     this.setState({
-      shortLink: newValue,
+      shortUrl: newValue,
     });
   };
 
   handleLinkInfo = () => {
-    if (!this.state.shortLink) return;
+    if (!this.state.shortUrl) return;
     this.props.getLinkInfo({ // to dispatch into redux
-      shortLink: this.state.shortLink,
+      shortUrl: this.state.shortUrl,
     });
     this.setState({
       isInfoButtonClicked: true,

@@ -6,13 +6,13 @@ import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import SnackBar from "../SnackBar";
 import AttachmentInput from "../AttachmentInput";
-import utils from "../../utils";
 
 const NewLinkPopupWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-bottom: 15px;
 `;
 
 export default class NewLinkPopup extends React.PureComponent {
@@ -91,7 +91,7 @@ export default class NewLinkPopup extends React.PureComponent {
     if (event.target.files.length) {
       this.setState({
         isTextInputsDisabled: true,
-        file: event.target.files[0], // unnecessary, only for Client side reading
+        file: event.target.files[0],
       })
     } else {
       this.setState({

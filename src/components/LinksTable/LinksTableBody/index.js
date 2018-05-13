@@ -3,6 +3,7 @@ import {
   TableRow,
   TableRowColumn,
 } from "material-ui/Table";
+import { Link, Redirect } from "react-router-dom";
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
@@ -67,7 +68,12 @@ export default class LinksTableBody extends React.Component {
                 >
                   <MenuItem primaryText="Remove"/>
                   <MenuItem primaryText="Edit"/>
-                  <MenuItem primaryText="Download CSV"/>
+                  <Link to="../info" onClick={this.infoLinkHandle}>
+                    <MenuItem primaryText="Info"/>
+                  </Link>
+                  <a href={`${config.api}/file/csv/links/${link.shortUrl}`}>
+                    <MenuItem primaryText="Download CSV"/>
+                  </a>
                 </IconMenu>
               </TableRowColumn>
             </React.Fragment> : "" }
@@ -96,6 +102,11 @@ export default class LinksTableBody extends React.Component {
   editLinkHandle = (link) => {
     this.setLinkForUpdate(false);
     this.props.editLink(link); // to dispatch into redux
+  };
+
+  infoLinkHandle = (event) => {
+    const shortUrl = event.currentTarget.parentNode.getAttribute("shorturl");
+    this.props.getLinkInfo({ shortUrl });
   };
 
   handleMenuClick = (event, child) => {
