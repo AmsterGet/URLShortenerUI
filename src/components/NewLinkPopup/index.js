@@ -6,6 +6,7 @@ import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import SnackBar from "../SnackBar";
 import AttachmentInput from "../AttachmentInput";
+import utils from "../../utils";
 
 const NewLinkPopupWrapper = styled.div`
   display: flex;
@@ -31,6 +32,7 @@ export default class NewLinkPopup extends React.PureComponent {
   }
 
   render() {
+    console.log("RERENDER");
     const actions = [
       <FlatButton
         label="Cancel"
@@ -88,11 +90,16 @@ export default class NewLinkPopup extends React.PureComponent {
   }
 
   handleAttach = (event) => {
+    console.log(event.target.files[0]);
+
     if (event.target.files.length) {
-      this.setState({
-        isTextInputsDisabled: true,
-        file: event.target.files[0],
-      })
+      utils.FileReader.readFile(event.target.files[0])
+        .then((fileString) => {
+          this.setState({
+            isTextInputsDisabled: true,
+            file: fileString,
+          })
+        });
     } else {
       this.setState({
         isTextInputsDisabled: false,

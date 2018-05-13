@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import config from "../../../config";
 import LinksPopup from "../LinksPopup";
@@ -110,10 +111,9 @@ export default class LinkInfoContent extends React.Component {
                         links={this.props.links}/>
 
           </InfoPageWrapper>
-          :
-          <span>
-            {this.props.errorMessage}
-          </span>
+          : (this.props.errorMessage ? <span>
+              {this.props.errorMessage}
+            </span> : "")
         }
       </InfoPageWrapper>
     );

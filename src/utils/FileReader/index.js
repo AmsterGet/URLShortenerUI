@@ -1,11 +1,15 @@
 const reader = new FileReader();
 
 function readFile(file) {
-  reader.onload = (event) => {
-    console.log(event.target.result);
-    return event.target.result;
-  };
-  reader.readAsText(file);
+  return new Promise((resolve, reject) => {
+    reader.onload = (event) => {
+      return resolve(event.target.result);
+    };
+    reader.onerror = (error) => {
+      return reject(error);
+    };
+    reader.readAsText(file);
+  });
 }
 
 export default {
