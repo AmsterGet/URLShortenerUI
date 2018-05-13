@@ -4,10 +4,10 @@ import {
   TableHeader,
   TableBody,
 } from 'material-ui/Table';
-import LinksTableHeader from "./LinksTableHeader/index";
-import LinksTableBody from "./LinksTableBody/index";
+import UsersTableHeader from "./UsersTableHeader";
+import UsersTableBody from "./UsersTableBody";
 
-export default class LinksTable extends React.Component {
+export default class UsersTable extends React.Component {
   state = {
     fixedHeader: true,
     showRowHover: true,
@@ -20,16 +20,14 @@ export default class LinksTable extends React.Component {
       <Table fixedHeader={this.state.fixedHeader}>
         <TableHeader displaySelectAll={this.props.showCheckboxes}
                      adjustForCheckbox={this.props.showCheckboxes}>
-          <LinksTableHeader userData={this.props.userData}/>
+          <UsersTableHeader userData={this.props.userData}/>
         </TableHeader>
         <TableBody displayRowCheckbox={this.props.showCheckboxes}
                    deselectOnClickaway={this.props.deselectOnClickaway}
                    showRowHover={this.props.showRowHover}>
-        <LinksTableBody userData={this.props.userData}
-                        links={this.props.links}
-                        editLink={this.props.editLink}
-                        getLinkInfo={this.props.getLinkInfo}
-                        removeLink={this.props.removeLink}/>
+        <UsersTableBody userData={this.props.userData}
+                        users={this.props.users}
+                        removeUser={this.props.removeUser}/>
         </TableBody>
       </Table>
     );

@@ -18,4 +18,8 @@ export const editLinkRequests = createAsyncActionTypes("EDIT_LINK");
 
 export const removeLinkRequests = createAsyncActionTypes("REMOVE_LINK");
 
+export const getUsersRequests = createAsyncActionTypes("GET_USERS");
+
+export const removeUserRequests = createAsyncActionTypes("REMOVE_USER");
+
 export const CLEAR_USER_LINKS = "CLEAR_USER_LINKS";

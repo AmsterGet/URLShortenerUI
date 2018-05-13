@@ -65,23 +65,6 @@ export function boundAddLink(dispatch) {
   };
 }
 
-// export function boundAddCsvLinks(dispatch) {
-//   return (file) => {
-//     axios({
-//       method: "post",
-//       url: `${config.api}/file/csv/`,
-//       withCredentials: true,
-//       file,
-//     })
-//       .then((response) => {
-//         dispatch(addLinksSuccess(response.data));// REWRITE FOR MULTIPLE LINKS
-//       })
-//       .catch((error) => {
-//         dispatch(addLinksError(error.response.data));
-//       });
-//   };
-// }
-
 export function boundRemoveLink(dispatch) {
   return (data) => {
     axios({

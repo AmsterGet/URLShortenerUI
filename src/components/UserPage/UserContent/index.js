@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Redirect } from "react-router-dom";
 import RaisedButton from "material-ui/RaisedButton";
 import LinksTable from "../../LinksTable";
 import InfoParagraph from "../../InfoParagraph";
@@ -25,27 +24,25 @@ export default class UserContent extends React.Component {
   render() {
     return (
       <div>
-        { this.props.userData ?
-          (this.props.links ? <UserPageWrapper>
-            <InfoParagraph>
-              There are your links!
-            </InfoParagraph>
-            <ButtonsContainer>
-              <NewLinkPopup addLink={this.props.addLink}/>
-              <a href={`${config.api}/file/csv/links/`}>
-                <RaisedButton
-                  label="Get all in CSV"
-                  primary={true}
-                />
-              </a>
-            </ButtonsContainer>
-            <LinksTable links={this.props.links}
-                        editLink={this.props.editLink}
-                        removeLink={this.props.removeLink}
-                        getLinkInfo={this.props.getLinkInfo}
-                        userData={this.props.userData}/>
-          </UserPageWrapper> : "")
-          : <Redirect to="/"/> }
+        {this.props.links ? <UserPageWrapper>
+          <InfoParagraph>
+            There are your links!
+          </InfoParagraph>
+          <ButtonsContainer>
+            <NewLinkPopup addLink={this.props.addLink}/>
+            <a href={`${config.api}/file/csv/links/`}>
+              <RaisedButton
+                label="Get all in CSV"
+                primary={true}
+              />
+            </a>
+          </ButtonsContainer>
+          <LinksTable links={this.props.links}
+                      editLink={this.props.editLink}
+                      removeLink={this.props.removeLink}
+                      getLinkInfo={this.props.getLinkInfo}
+                      userData={this.props.userData}/>
+        </UserPageWrapper> : ""}
       </div>
     );
   }

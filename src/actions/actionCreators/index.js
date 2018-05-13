@@ -5,14 +5,14 @@ import {
   signUpError,
   signOutSuccess,
   signOutError,
-} from "./authActionCreators.js";
+} from "./authActionCreators";
 
 import {
   guestLinkInfoSuccess,
   guestLinkInfoError,
   guestLinksByTagNameSuccess,
   guestLinksByTagNameError,
-} from "./guestLinksActionCreators.js";
+} from "./guestLinksActionCreators";
 
 import {
   addLinksSuccess,
@@ -24,7 +24,14 @@ import {
   clearUserLinks,
   getLinksSuccess,
   getLinksError,
-} from "./userLinksActionCreators.js";
+} from "./userLinksActionCreators";
+
+import {
+  getUsersSuccess,
+  getUsersError,
+  removeUserSuccess,
+  removeUserError,
+} from "./adminActionCreators";
 
 export {
   signInSuccess,
@@ -46,4 +53,8 @@ export {
   editLinkError,
   removeLinkSuccess,
   removeLinkError,
+  getUsersSuccess,
+  getUsersError,
+  removeUserSuccess,
+  removeUserError,
 };
