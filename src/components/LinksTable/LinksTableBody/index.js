@@ -71,16 +71,18 @@ export default class LinksTableBody extends React.Component {
                   <Link to="/info" onClick={this.infoLinkHandle}>
                     <MenuItem primaryText="Info"/>
                   </Link>
-                  { this.props.userData ? <React.Fragment>
-                    <MenuItem primaryText="Remove"/>
-                    <MenuItem primaryText="Edit"/>
-                    <a href={`${config.api}/file/csv/links/${link.shortUrl}`}>
+
+                  { this.props.userData ? <MenuItem primaryText="Remove"/> : "" }
+
+                  { this.props.userData ? <MenuItem primaryText="Edit"/> : "" }
+
+                  { this.props.userData ? <a href={`${config.api}/file/csv/links/${link.shortUrl}`}>
                       <MenuItem primaryText="Download CSV"/>
-                    </a>
-                  </React.Fragment> : "" }
+                    </a> : "" }
                 </IconMenu>
               </TableRowColumn>
-            </React.Fragment> : "" }
+            </React.Fragment>
+              : "" }
           </TableRow>
         ))}
         { this.props.userData && this.props.links ?
@@ -116,6 +118,9 @@ export default class LinksTableBody extends React.Component {
 
   handleMenuClick = (event, child) => {
     const shortUrl = event.currentTarget.parentNode.parentNode.getAttribute("shorturl");
+    console.log(event.currentTarget.parentNode);
+    console.log(shortUrl);
+    console.log(child.props.primaryText);
     switch (child.props.primaryText) {
       case "Remove":
         this.props.removeLink({ shortUrl });

@@ -1,6 +1,7 @@
 import {
   getUsersRequests,
   removeUserRequests,
+  addUserRequests,
 } from "../actionTypes/index";
 
 
@@ -12,6 +13,20 @@ export const getUsersSuccess = users => ({
 });
 export const getUsersError = data => ({
   type: getUsersRequests.ERROR,
+  payload: data,
+});
+
+export const addUserSuccess = user => {
+  user.linksQuantity = 0;
+  return {
+    type: addUserRequests.SUCCESS,
+    payload: {
+      user,
+    },
+  };
+};
+export const addUserError = data => ({
+  type: addUserRequests.ERROR,
   payload: data,
 });
 

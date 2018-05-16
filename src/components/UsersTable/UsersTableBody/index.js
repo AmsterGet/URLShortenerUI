@@ -22,7 +22,7 @@ export default class UsersTableBody extends React.Component {
             <TableRowColumn>
               {user.login}
             </TableRowColumn>
-            <TableRowColumn>
+            <TableRowColumn className="media-table-column">
               {user.name}
             </TableRowColumn>
             <TableRowColumn className="media-table-column">
@@ -32,7 +32,7 @@ export default class UsersTableBody extends React.Component {
               {user.role}
             </TableRowColumn>
             <TableRowColumn>
-              {user.linksQuantity || "-"}
+              { user.role === "admin" ? "-" : user.linksQuantity}
             </TableRowColumn>
             <TableRowColumn className="options-table-column" style={customOptionsStyle}>
               <IconMenu

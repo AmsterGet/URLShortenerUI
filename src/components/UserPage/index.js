@@ -30,9 +30,11 @@ export default class UserPage extends React.Component {
                   userData={this.props.userData}
                 /> :
                 <AdminContent
+                  errorMessage={this.props.errorMessage}
                   userData={this.props.userData}
                   usersList={this.props.usersList}
                   getUsers={this.props.getUsers}
+                  addUser={this.props.addUser}
                   removeUser={this.props.removeUser}
                 />)
               : <Redirect to="/"/> }

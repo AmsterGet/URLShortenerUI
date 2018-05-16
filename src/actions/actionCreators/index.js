@@ -32,6 +32,8 @@ import {
   getUsersError,
   removeUserSuccess,
   removeUserError,
+  addUserSuccess,
+  addUserError,
 } from "./adminActionCreators";
 
 export {
@@ -57,6 +59,8 @@ export {
   removeLinkError,
   getUsersSuccess,
   getUsersError,
+  addUserSuccess,
+  addUserError,
   removeUserSuccess,
   removeUserError,
 };

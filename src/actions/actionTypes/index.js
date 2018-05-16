@@ -2,8 +2,6 @@ import createAsyncActionTypes from "./createAsyncActionTypes";
 
 export const guestLinkInfoRequests = createAsyncActionTypes("LINK_INFO");
 
-// export const guestLinksForInfoRequests = createAsyncActionTypes("LINK_INFO");
-
 export const guestLinksRequests = createAsyncActionTypes("GUEST_LINKS");
 
 export const signInRequests = createAsyncActionTypes("SIGN_IN");
@@ -21,6 +19,8 @@ export const editLinkRequests = createAsyncActionTypes("EDIT_LINK");
 export const removeLinkRequests = createAsyncActionTypes("REMOVE_LINK");
 
 export const getUsersRequests = createAsyncActionTypes("GET_USERS");
+
+export const addUserRequests = createAsyncActionTypes("ADD_USER");
 
 export const removeUserRequests = createAsyncActionTypes("REMOVE_USER");
 

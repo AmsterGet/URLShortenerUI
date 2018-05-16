@@ -14,6 +14,7 @@ import {
 import {
   boundGetUsers,
   boundRemoveUser,
+  boundAddUser,
 } from "./boundAdminActionCreators";
 
 import {
@@ -36,5 +37,6 @@ export default {
   boundGuestLinksByTagName,
   boundClearGuestLinks,
   boundGetUsers,
+  boundAddUser,
   boundRemoveUser,
 };

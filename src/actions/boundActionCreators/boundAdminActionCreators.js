@@ -5,6 +5,8 @@ import {
   getUsersError,
   removeUserSuccess,
   removeUserError,
+  addUserSuccess,
+  addUserError,
 } from "../actionCreators/";
 
 export function boundGetUsers(dispatch) {
@@ -21,6 +23,23 @@ export function boundGetUsers(dispatch) {
       .catch((error) => {
         console.log(error);
         dispatch(getUsersError(error));
+      });
+  };
+}
+
+export function boundAddUser(dispatch) {
+  return (data) => {
+    axios({
+      method: "post",
+      url: `${config.api}/user/admin/users`,
+      withCredentials: true,
+      data,
+    })
+      .then((response) => {
+        dispatch(addUserSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(addUserError("Such user already exists"));
       });
   };
 }

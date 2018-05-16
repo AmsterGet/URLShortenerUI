@@ -22,7 +22,8 @@ export default class AdminContent extends React.Component {
           <InfoParagraph>
             There are all users!
           </InfoParagraph>
-          <NewUserPopup addUser={this.props.addUser || 1}/>
+          <NewUserPopup errorMessage={this.props.errorMessage}
+                        addUser={this.props.addUser}/>
           <a href={`${config.api}/file/csv/users`}>
             <RaisedButton
               label="Get all in CSV"
@@ -31,7 +32,7 @@ export default class AdminContent extends React.Component {
           </a>
           <UsersTable users={this.props.usersList.users}
                       removeUser={this.props.removeUser}/>
-        </UserPageWrapper> : ""}
+        </UserPageWrapper> : "No users, you are only exists!"}
       </div>
     );
   }

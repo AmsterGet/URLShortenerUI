@@ -103,6 +103,7 @@ export default class AuthComponent extends React.Component {
                        onChange={this.handleNameChange}/>
             <br/>
             <TextField floatingLabelText="Email"
+                       errorText={this.state.emailError}
                        onChange={this.handleMailChange}/>
             </div> : <div>
                 <span>
@@ -110,12 +111,12 @@ export default class AuthComponent extends React.Component {
                 </span>
               </div> }
           <TextField floatingLabelText="Login"
-                     errorText={this.props.errorMessage}
+                     errorText={this.state.errorMessage}
                      onChange={this.handleLoginChange}/>
           <br/>
           <TextField floatingLabelText="Password"
                      type="password"
-                     errorText={this.props.errorMessage}
+                     errorText={this.state.passwordError}
                      onChange={this.handlePasswordChange}/>
           <br/>
         </Dialog>
@@ -124,9 +125,20 @@ export default class AuthComponent extends React.Component {
   }
 
   handlePopupOpen = () => {
+    if (this.state.open) {
+      this.setState({
+        login: null,
+        mail: null,
+        name: null,
+        password: null,
+        errorMessage: "",
+        emailError: false,
+        passwordError: false,
+      });
+    }
     this.setState({
       open: !this.state.open,
-      isSigningUp: this.state.open,
+      // isSigningUp: this.state.open,
       isErrorShowed: false,
     });
   };
@@ -171,7 +183,6 @@ export default class AuthComponent extends React.Component {
       this.handleSnackBarOpen();
       this.setState({
         isErrorShowed: true,
-        errorMessage: "",
       });
     }
   };
@@ -182,15 +193,16 @@ export default class AuthComponent extends React.Component {
       mail: null,
       name: null,
       password: null,
+      errorMessage: false,
+      emailError: false,
+      passwordError: false,
     });
   };
 
   isFullFilling = () => {
     let flag = true;
     if (this.state.isSigningUp) {
-      if (!this.state.mail ||
-        !this.state.mail.match(/^[a-zA-Z0-9][\w/.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w/.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z/.]*[a-zA-Z]$/)
-        || !this.state.name) {
+      if (!this.state.mail || !this.state.name) {
         flag = false;
       }
     }
@@ -204,6 +216,7 @@ export default class AuthComponent extends React.Component {
   handleLoginChange = (event, newValue) => {
     this.setState({
         login: newValue,
+        errorMessage: false,
     });
   };
 
@@ -214,23 +227,43 @@ export default class AuthComponent extends React.Component {
   };
 
   handlePasswordChange = (event, newValue) => {
-    this.setState({
+    let newStateObject;
+    if (newValue.length<5) {
+      newStateObject = {
+        passwordError: "Too short password!",
+      };
+    } else {
+      newStateObject = {
         password: newValue,
-    });
+        isErrorShowed: false,
+        passwordError: false,
+        errorMessage: false,
+      };
+    }
+    this.setState(newStateObject);
   };
 
   handleMailChange = (event, newValue) => {
-    this.setState({
+    let newStateObject;
+    if (!newValue.match(/^[a-zA-Z0-9][\w/.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w/.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z/.]*[a-zA-Z]$/)) {
+      newStateObject = {
+        emailError: "Incorrect email!",
+      };
+    } else {
+      newStateObject = {
         mail: newValue,
-    });
+        isErrorShowed: false,
+        emailError: false,
+        errorMessage: false,
+      };
+    }
+    this.setState(newStateObject);
   };
 
   componentWillReceiveProps(nextProps) {
     console.log("RECEIVE");
-    if (nextProps.errorMessage) {
-      this.setState({
-        errorMessage: nextProps.errorMessage,
-      });
-    }
+    this.setState({
+      errorMessage: nextProps.errorMessage,
+    });
   }
 }

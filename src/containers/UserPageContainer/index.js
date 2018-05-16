@@ -9,7 +9,7 @@ function mapStateToProps(state) {
     usersList: state.usersList,
     isLoading: state.userLinks.isLoading,
     isError: state.userLinks.isError,
-    errorMessage: state.userLinks.errorMessage,
+    errorMessage: state.usersList.errorMessage,
   };
 }
 
@@ -21,6 +21,7 @@ function mapDispatchToProps(dispatch) {
     editLink: boundActionCreators.boundEditLink(dispatch),
     getLinkInfo: boundActionCreators.boundGuestLinkInfo(dispatch),
     getUsers: boundActionCreators.boundGetUsers(dispatch),
+    addUser: boundActionCreators.boundAddUser(dispatch),
     removeUser: boundActionCreators.boundRemoveUser(dispatch),
   };
 }

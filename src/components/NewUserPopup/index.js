@@ -31,7 +31,7 @@ export default class NewUserPopup extends React.PureComponent {
       password: null,
       name: null,
       mail: null,
-      role: null,
+      role: "user",
       snackMessage: "Wrong! Check your input, please!",
       errorMessage: "",
       isErrorShowed: false,
@@ -79,14 +79,15 @@ export default class NewUserPopup extends React.PureComponent {
                      onChange={this.handleNameChange}/>
           <br/>
           <TextField floatingLabelText="Email"
+                     errorText={this.state.emailError}
                      onChange={this.handleMailChange}/>
           <TextField floatingLabelText="Login"
-                     errorText={this.props.errorMessage}
+                     errorText={this.state.errorMessage}
                      onChange={this.handleLoginChange}/>
           <br/>
           <TextField floatingLabelText="Password"
                      type="password"
-                     errorText={this.props.errorMessage}
+                     errorText={this.state.passwordError}
                      onChange={this.handlePasswordChange}/>
           <SelectField
             floatingLabelText="Role"
@@ -108,6 +109,9 @@ export default class NewUserPopup extends React.PureComponent {
   };
 
   handlePopupOpen = () => {
+    if (this.state.open) {
+      this.clearState();
+    }
     this.setState({
       open: !this.state.open,
       isErrorShowed: false,
@@ -125,14 +129,13 @@ export default class NewUserPopup extends React.PureComponent {
       this.handleSnackBarOpen();
       return;
     }
-    this.props.addUser ? () => 1 : "";
-    // this.props.addUser({ // to dispatch into redux
-    //   login: this.state.login,
-    //   mail: this.state.mail,
-    //   name: this.state.name,
-    //   password: this.state.password,
-    //   role: this.state.role,
-    // });
+    this.props.addUser({ // to dispatch into redux
+      login: this.state.login,
+      mail: this.state.mail,
+      name: this.state.name,
+      password: this.state.password,
+      role: this.state.role,
+    });
     this.clearState();
     this.handlePopupOpen();
   };
@@ -142,7 +145,6 @@ export default class NewUserPopup extends React.PureComponent {
       this.handleSnackBarOpen();
       this.setState({
         isErrorShowed: true,
-        errorMessage: "",
       });
     }
   };
@@ -153,17 +155,16 @@ export default class NewUserPopup extends React.PureComponent {
       mail: null,
       name: null,
       password: null,
+      errorMessage: false, // HERE
+      emailError: false,
+      passwordError: false,
     });
   };
 
   isFullFilling = () => {
     let flag = true;
-    if (this.state.isSigningUp) {
-      if (!this.state.mail ||
-        !this.state.mail.match(/^[a-zA-Z0-9][\w/.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w/.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z/.]*[a-zA-Z]$/)
-        || !this.state.name) {
-        flag = false;
-      }
+    if (!this.state.mail || !this.state.name) {
+      flag = false;
     }
 
     if (!this.state.login || !this.state.password) {
@@ -175,33 +176,57 @@ export default class NewUserPopup extends React.PureComponent {
   handleLoginChange = (event, newValue) => {
     this.setState({
       login: newValue,
+      isErrorShowed: false,
+      errorMessage: false,
     });
   };
 
   handleNameChange = (event, newValue) => {
     this.setState({
       name: newValue,
+      isErrorShowed: false,
+      errorMessage: false,
     });
   };
 
   handlePasswordChange = (event, newValue) => {
-    this.setState({
-      password: newValue,
-    });
+    let newStateObject;
+    if (newValue.length<5) {
+      newStateObject = {
+        passwordError: "Too short password!",
+      };
+    } else {
+      newStateObject = {
+        password: newValue,
+        isErrorShowed: false,
+        passwordError: false,
+        errorMessage: false,
+      };
+    }
+    this.setState(newStateObject);
   };
 
   handleMailChange = (event, newValue) => {
-    this.setState({
-      mail: newValue,
-    });
+    let newStateObject;
+    if (!newValue.match(/^[a-zA-Z0-9][\w/.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w/.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z/.]*[a-zA-Z]$/)) {
+      newStateObject = {
+        emailError: "Incorrect email!",
+      };
+    } else {
+      newStateObject = {
+        mail: newValue,
+        isErrorShowed: false,
+        emailError: false,
+        errorMessage: false,
+      };
+    }
+    this.setState(newStateObject);
   };
 
   componentWillReceiveProps(nextProps) {
     console.log("RECEIVE");
-    if (nextProps.errorMessage) {
-      this.setState({
-        errorMessage: nextProps.errorMessage,
-      });
-    }
+    this.setState({
+      errorMessage: nextProps.errorMessage,
+    });
   }
 }

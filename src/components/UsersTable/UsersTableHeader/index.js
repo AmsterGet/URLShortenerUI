@@ -16,7 +16,7 @@ export default class UsersTableHeader extends React.Component {
           <TableHeaderColumn>
             User login
           </TableHeaderColumn>
-          <TableHeaderColumn>
+          <TableHeaderColumn className="media-table-column">
             User name
           </TableHeaderColumn>
           <TableHeaderColumn className="media-table-column">
