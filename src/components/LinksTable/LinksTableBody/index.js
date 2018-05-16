@@ -43,21 +43,23 @@ export default class LinksTableBody extends React.Component {
                 {`${config.api}/${link.shortUrl}`}
               </a>
             </TableRowColumn>
-            <TableRowColumn className={ this.props.userData ? "media-table-column" : "" }>
-              <a href={`${link.originalUrl}`}>
-                {link.originalUrl}
-              </a>
-            </TableRowColumn>
+            { !this.props.isLinksForInfo ? <TableRowColumn className={ this.props.userData ? "media-table-column" : "" }>
+                <a href={`${link.originalUrl}`}>
+                  {link.originalUrl}
+                </a>
+            </TableRowColumn> : "" }
             <TableRowColumn className="media-table-column">
               {link.description}
             </TableRowColumn>
-            <TableRowColumn className="media-table-column">
+            { !this.props.isLinksForInfo ? <TableRowColumn className="media-table-column">
               {new Date(link.postDate).toDateString()}
-            </TableRowColumn>
-            { this.props.userData ? <React.Fragment>
-              <TableRowColumn className="transitions-table-column">
-                {link.transitions}
-              </TableRowColumn>
+            </TableRowColumn> : "" }
+
+            { this.props.isLinksForInfo || this.props.userData ? <React.Fragment>
+              { this.props.userData ? <TableRowColumn className="transitions-table-column">
+                  {link.transitions}
+                </TableRowColumn> : "" }
+
               <TableRowColumn className="options-table-column" style={customOptionsStyle}>
                 <IconMenu
                   iconButtonElement={ <IconButton><MoreVertIcon/></IconButton> }
@@ -66,14 +68,16 @@ export default class LinksTableBody extends React.Component {
                   shorturl={link.shortUrl}
                   onItemClick={this.handleMenuClick}
                 >
-                  <MenuItem primaryText="Remove"/>
-                  <MenuItem primaryText="Edit"/>
-                  <Link to="../info" onClick={this.infoLinkHandle}>
+                  <Link to="/info" onClick={this.infoLinkHandle}>
                     <MenuItem primaryText="Info"/>
                   </Link>
-                  <a href={`${config.api}/file/csv/links/${link.shortUrl}`}>
-                    <MenuItem primaryText="Download CSV"/>
-                  </a>
+                  { this.props.userData ? <React.Fragment>
+                    <MenuItem primaryText="Remove"/>
+                    <MenuItem primaryText="Edit"/>
+                    <a href={`${config.api}/file/csv/links/${link.shortUrl}`}>
+                      <MenuItem primaryText="Download CSV"/>
+                    </a>
+                  </React.Fragment> : "" }
                 </IconMenu>
               </TableRowColumn>
             </React.Fragment> : "" }
@@ -107,6 +111,7 @@ export default class LinksTableBody extends React.Component {
   infoLinkHandle = (event) => {
     const shortUrl = event.currentTarget.parentNode.getAttribute("shorturl");
     this.props.getLinkInfo({ shortUrl });
+    this.props.handleClosePopup ? this.props.handleClosePopup() : "";
   };
 
   handleMenuClick = (event, child) => {

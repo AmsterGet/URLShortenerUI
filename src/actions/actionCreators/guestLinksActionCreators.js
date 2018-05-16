@@ -1,7 +1,15 @@
 import {
   guestLinkInfoRequests,
-  guestLinksByTagNameRequests,
+  guestLinksRequests,
+  CLEAR_GUEST_LINKS,
 } from "../actionTypes/index";
+
+export const clearGuestLinks = clearedValue => ({
+  type: CLEAR_GUEST_LINKS,
+  payload: {
+    links: clearedValue,
+  },
+});
 
 export const guestLinkInfoSuccess = link => ({
   type: guestLinkInfoRequests.SUCCESS,
@@ -14,13 +22,13 @@ export const guestLinkInfoError = data => ({
   payload: data,
 });
 
-export const guestLinksByTagNameSuccess = links => ({
-  type: guestLinksByTagNameRequests.SUCCESS,
+export const guestLinksSuccess = links => ({
+  type: guestLinksRequests.SUCCESS,
   payload: {
     links,
   },
 });
-export const guestLinksByTagNameError = data => ({
-  type: guestLinksByTagNameRequests.ERROR,
+export const guestLinksError = data => ({
+  type: guestLinksRequests.ERROR,
   payload: data,
 });

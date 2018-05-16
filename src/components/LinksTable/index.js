@@ -20,7 +20,8 @@ export default class LinksTable extends React.Component {
       <Table fixedHeader={this.state.fixedHeader}>
         <TableHeader displaySelectAll={this.props.showCheckboxes}
                      adjustForCheckbox={this.props.showCheckboxes}>
-          <LinksTableHeader userData={this.props.userData}/>
+          <LinksTableHeader userData={this.props.userData}
+                            isLinksForInfo={this.props.isLinksForInfo}/>
         </TableHeader>
         <TableBody displayRowCheckbox={this.props.showCheckboxes}
                    deselectOnClickaway={this.props.deselectOnClickaway}
@@ -29,7 +30,9 @@ export default class LinksTable extends React.Component {
                         links={this.props.links}
                         editLink={this.props.editLink}
                         getLinkInfo={this.props.getLinkInfo}
-                        removeLink={this.props.removeLink}/>
+                        removeLink={this.props.removeLink}
+                        isLinksForInfo={this.props.isLinksForInfo}
+                        handleClosePopup={this.props.handleClosePopup}/>
         </TableBody>
       </Table>
     );

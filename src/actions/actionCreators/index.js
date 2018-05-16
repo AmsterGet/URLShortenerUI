@@ -10,8 +10,9 @@ import {
 import {
   guestLinkInfoSuccess,
   guestLinkInfoError,
-  guestLinksByTagNameSuccess,
-  guestLinksByTagNameError,
+  guestLinksSuccess,
+  guestLinksError,
+  clearGuestLinks,
 } from "./guestLinksActionCreators";
 
 import {
@@ -42,11 +43,12 @@ export {
   signOutError,
   guestLinkInfoSuccess,
   guestLinkInfoError,
-  guestLinksByTagNameSuccess,
-  guestLinksByTagNameError,
-  clearUserLinks,
+  guestLinksSuccess,
+  guestLinksError,
+  clearGuestLinks,
   getLinksSuccess,
   getLinksError,
+  clearUserLinks,
   addLinksSuccess,
   addLinksError,
   editLinkSuccess,

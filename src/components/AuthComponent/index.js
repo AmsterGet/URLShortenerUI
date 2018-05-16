@@ -78,7 +78,7 @@ export default class AuthComponent extends React.Component {
                           primary={true}/>
             <Redirect to={`/user/${this.props.userData.login}`}/>
           </div> :
-          <RaisedButton label="Sign in"
+          <RaisedButton label="Sign in/up"
                         onClick={this.handlePopupOpen}
                         primary={true}/>
         }
@@ -188,7 +188,9 @@ export default class AuthComponent extends React.Component {
   isFullFilling = () => {
     let flag = true;
     if (this.state.isSigningUp) {
-      if (!this.state.mail || !this.state.name) {
+      if (!this.state.mail ||
+        !this.state.mail.match(/^[a-zA-Z0-9][\w/.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w/.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z/.]*[a-zA-Z]$/)
+        || !this.state.name) {
         flag = false;
       }
     }

@@ -1,4 +1,9 @@
-import { getLinksRequests, addLinksRequests, editLinkRequests, removeLinkRequests, CLEAR_USER_LINKS } from "../actions/actionTypes/";
+import { getLinksRequests,
+  addLinksRequests,
+  editLinkRequests,
+  removeLinkRequests,
+  CLEAR_USER_LINKS,
+} from "../actions/actionTypes/";
 
 const userLinksInitialState = {
   isLoading: false,

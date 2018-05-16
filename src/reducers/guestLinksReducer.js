@@ -1,4 +1,7 @@
-import { guestLinkInfoRequests, guestLinksByTagNameRequests } from "../actions/actionTypes/";
+import { guestLinkInfoRequests,
+  guestLinksRequests,
+  CLEAR_GUEST_LINKS,
+} from "../actions/actionTypes/";
 
 const guestLinksInitialState = {
   isLoading: false,
@@ -11,6 +14,11 @@ const guestLinksInitialState = {
 export default function (state = guestLinksInitialState, action) { // guestLinksReducer
   const { type, payload } = action;
   switch (type) {
+  case CLEAR_GUEST_LINKS:
+    return {
+      ...state,
+      links: payload.links,
+    };
   case guestLinkInfoRequests.REQUEST:
     return {
       ...state,
@@ -31,20 +39,20 @@ export default function (state = guestLinksInitialState, action) { // guestLinks
       isLoading: false,
       isError: true,
     };
-  case guestLinksByTagNameRequests.REQUEST:
+  case guestLinksRequests.REQUEST:
     return {
       ...state,
       isLoading: true,
       isError: false,
     };
-  case guestLinksByTagNameRequests.SUCCESS:
+  case guestLinksRequests.SUCCESS:
     return {
       ...state,
       errorMessage: "",
       links: payload.links,
       isLoading: false,
     };
-  case guestLinksByTagNameRequests.ERROR:
+  case guestLinksRequests.ERROR:
     return {
       ...state,
       errorMessage: payload,

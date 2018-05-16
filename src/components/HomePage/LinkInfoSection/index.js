@@ -1,9 +1,9 @@
 import React from "react";
-import { Link, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
 import InfoParagraph from "../../InfoParagraph";
+import LinksPopup from "../../LinkInfoPage/LinksPopup";
 
 const LinkInfoSectionWrapper = styled.section`
     display: flex;
@@ -28,7 +28,7 @@ export default class LinkInfoSection extends React.Component {
     super(props);
     this.state = {
       shortUrl: null,
-      isInfoButtonClicked: false,
+      isButtonClicked: false,
     };
   }
 
@@ -43,18 +43,28 @@ export default class LinkInfoSection extends React.Component {
             <TextField floatingLabelText="Write down short link here"
                        onChange={this.handleShortLinkChange}/>
             <br/>
+            <LinksPopup changeButtonClickState={this.changeButtonClickState}
+                        isButtonClicked={this.state.isButtonClicked}
+                        errorMessage={this.props.errorMessage}
+                        getLinkInfo={this.props.getLinkInfo}
+                        links={this.props.links}
+                        isLinksForInfo={true}/>
             <RaisedButton label="Get Short Link info"
                           primary={true}
                           onClick={this.handleLinkInfo}>
-              { this.state.isInfoButtonClicked ?
-                <Redirect to="/info"/> :
-                "" }
             </RaisedButton>
           </LinkInfoSectionInnerAligner>
         </div>
       </LinkInfoSectionWrapper>
     );
   }
+
+  changeButtonClickState = () => {
+    this.props.clearGuestLinks(false);
+    this.setState({
+      isButtonClicked: false,
+    });
+  };
 
   handleShortLinkChange = (event, newValue) => {
     console.log(newValue);
@@ -70,7 +80,7 @@ export default class LinkInfoSection extends React.Component {
       shortUrl: this.state.shortUrl,
     });
     this.setState({
-      isInfoButtonClicked: true,
+      isButtonClicked: true,
     });
   }
 }

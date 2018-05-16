@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import InfoParagraph from "../../InfoParagraph";
-import AppInnerContainer from "../../AppInnerContainer";
 
 const HomeInfoSectionContainer = styled.section`
     display: flex;

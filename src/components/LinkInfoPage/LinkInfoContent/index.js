@@ -1,5 +1,4 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import config from "../../../config";
 import LinksPopup from "../LinksPopup";
@@ -54,7 +53,7 @@ const TagsListItem = styled.li`
 
 export default class LinkInfoContent extends React.Component {
   state = {
-    isTagClicked: false,
+    isButtonClicked: false,
   };
   render() {
     return (
@@ -106,8 +105,10 @@ export default class LinkInfoContent extends React.Component {
               </SingleInfoContainer>
             </InfoContentWrapper>
 
-            <LinksPopup changeTagClickState={this.changeTagClickState}
-                        isTagClicked={this.state.isTagClicked}
+            <LinksPopup changeButtonClickState={this.changeButtonClickState}
+                        isButtonClicked={this.state.isButtonClicked}
+                        errorMessage={this.props.errorMessage}
+                        getLinkInfo={this.props.getLinkInfo}
                         links={this.props.links}/>
 
           </InfoPageWrapper>
@@ -119,9 +120,11 @@ export default class LinkInfoContent extends React.Component {
     );
   }
 
-  changeTagClickState = () => {
+  changeButtonClickState = () => {
+    this.props.clearGuestLinks(false);
+
     this.setState({
-      isTagClicked: !this.state.isTagClicked,
+      isButtonClicked: !this.state.isButtonClicked,
     });
   };
 
@@ -129,7 +132,7 @@ export default class LinkInfoContent extends React.Component {
     if (event.target.tagName === "UL") {
         return;
     }
-    this.changeTagClickState();
+    this.changeButtonClickState();
     this.props.getLinksByTagName({
       tagName: event.target.innerText,
       shortUrl: this.props.shortUrl

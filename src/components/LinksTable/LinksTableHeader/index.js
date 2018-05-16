@@ -17,21 +17,22 @@ export default class LinksTableHeader extends React.Component {
           <TableHeaderColumn>
             Short Url
           </TableHeaderColumn>
-          <TableHeaderColumn className={this.props.userData ? "media-table-column" : ""}>
-            Original Url
-          </TableHeaderColumn>
+          { !this.props.isLinksForInfo ? <TableHeaderColumn className={this.props.userData ? "media-table-column" : ""}>
+              Original Url
+          </TableHeaderColumn> : "" }
           <TableHeaderColumn className="media-table-column">
             Description
           </TableHeaderColumn>
-          <TableHeaderColumn className="media-table-column">
-            Post date
-          </TableHeaderColumn>
-          { this.props.userData ? <React.Fragment>
+          { !this.props.isLinksForInfo ? <TableHeaderColumn className="media-table-column">
+              Post date
+          </TableHeaderColumn> : "" }
+          { this.props.userData ?
             <TableHeaderColumn className="transitions-table-column">
               Transitions
-            </TableHeaderColumn>
-            <TableHeaderColumn className="options-table-column" style={customOptionsStyle}/>
-          </React.Fragment> : "" }
+            </TableHeaderColumn> : "" }
+          { this.props.isLinksForInfo || this.props.userData ?
+            <TableHeaderColumn className="options-table-column"
+                               style={customOptionsStyle}/> : ""}
         </TableRow>
       </React.Fragment>
     );

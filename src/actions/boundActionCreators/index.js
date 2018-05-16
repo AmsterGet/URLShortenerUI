@@ -8,6 +8,7 @@ import {
 import {
   boundGuestLinkInfo,
   boundGuestLinksByTagName,
+  boundClearGuestLinks,
 } from "./boundGuestLinksActionCreators";
 
 import {
@@ -33,6 +34,7 @@ export default {
   boundEditLink,
   boundGuestLinkInfo,
   boundGuestLinksByTagName,
+  boundClearGuestLinks,
   boundGetUsers,
   boundRemoveUser,
 };
