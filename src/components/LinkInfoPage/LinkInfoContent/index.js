@@ -109,6 +109,7 @@ export default class LinkInfoContent extends React.Component {
                         isButtonClicked={this.state.isButtonClicked}
                         errorMessage={this.props.errorMessage}
                         getLinkInfo={this.props.getLinkInfo}
+                        isLinksForInfo={true}
                         links={this.props.links}/>
 
           </InfoPageWrapper>

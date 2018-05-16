@@ -29,7 +29,10 @@ export default class UsersTableBody extends React.Component {
               {user.mail}
             </TableRowColumn>
             <TableRowColumn>
-              {user.linksQuantity}
+              {user.role}
+            </TableRowColumn>
+            <TableRowColumn>
+              {user.linksQuantity || "-"}
             </TableRowColumn>
             <TableRowColumn className="options-table-column" style={customOptionsStyle}>
               <IconMenu

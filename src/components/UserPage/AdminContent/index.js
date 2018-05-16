@@ -4,6 +4,7 @@ import RaisedButton from "material-ui/RaisedButton";
 import InfoParagraph from "../../InfoParagraph";
 import UsersTable from "../../UsersTable";
 import config from "../../../config/index";
+import NewUserPopup from "../../NewUserPopup";
 
 const UserPageWrapper = styled.div`
     display: flex;
@@ -21,6 +22,7 @@ export default class AdminContent extends React.Component {
           <InfoParagraph>
             There are all users!
           </InfoParagraph>
+          <NewUserPopup addUser={this.props.addUser || 1}/>
           <a href={`${config.api}/file/csv/users`}>
             <RaisedButton
               label="Get all in CSV"

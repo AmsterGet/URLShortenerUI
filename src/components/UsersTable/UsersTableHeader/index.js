@@ -23,6 +23,9 @@ export default class UsersTableHeader extends React.Component {
             User email
           </TableHeaderColumn>
           <TableHeaderColumn>
+            Role
+          </TableHeaderColumn>
+          <TableHeaderColumn>
             Created links
           </TableHeaderColumn>
           <TableHeaderColumn className="options-table-column" style={customOptionsStyle}/>
