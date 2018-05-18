@@ -5,12 +5,15 @@ import FlatButton from "material-ui/FlatButton";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import SnackBar from "../SnackBar";
+import AttachmentInput from "../AttachmentInput";
+import utils from "../../utils";
 
 const NewLinkPopupWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-bottom: 15px;
 `;
 
 export default class NewLinkPopup extends React.PureComponent {
@@ -19,6 +22,8 @@ export default class NewLinkPopup extends React.PureComponent {
     this.state = {
       open: false,
       openSnackBar: false,
+      isTextInputsDisabled: false,
+      file: false,
       originalUrl: "",
       description: "",
       tags: "",
@@ -27,6 +32,7 @@ export default class NewLinkPopup extends React.PureComponent {
   }
 
   render() {
+    console.log("RERENDER");
     const actions = [
       <FlatButton
         label="Cancel"
@@ -62,26 +68,50 @@ export default class NewLinkPopup extends React.PureComponent {
           autoScrollBodyContent={true}
         >
         <TextField floatingLabelText="Your really big link here"
+                   disabled={this.state.isTextInputsDisabled}
                    fullWidth={true}
                    onChange={this.handleLinkChange}/>
         <br/>
         <TextField floatingLabelText="Link's description"
+                   disabled={this.state.isTextInputsDisabled}
                    multiLine={true}
                    rows={2}
                    fullWidth={true}
                    onChange={this.handleDescriptionChange}/>
         <br/>
         <TextField floatingLabelText="Link's tags for provide fast search"
+                   disabled={this.state.isTextInputsDisabled}
                    fullWidth={true}
                    onChange={this.handleTagsChange}/>
+        <AttachmentInput handleAttach={this.handleAttach}/>
         </Dialog>
       </div>
     );
   }
 
+  handleAttach = (event) => {
+    console.log(event.target.files[0]);
+
+    if (event.target.files.length) {
+      utils.FileReader.readFile(event.target.files[0])
+        .then((fileString) => {
+          this.setState({
+            isTextInputsDisabled: true,
+            file: fileString,
+          })
+        });
+    } else {
+      this.setState({
+        isTextInputsDisabled: false,
+        file: false,
+      });
+    }
+  };
+
   handlePopupOpen = () => {
     this.setState({
       open: !this.state.open,
+      isTextInputsDisabled: false,
     });
   };
 
@@ -92,33 +122,32 @@ export default class NewLinkPopup extends React.PureComponent {
   };
 
   handleSubmit = () => {
-    if (!this.isFullFilling()) {
+    if (!this.isFullFilling() && !this.state.isTextInputsDisabled) {
       this.handleSnackBarOpen();
       return;
     }
-    let tagsToDispatch = this.state.tags;
-    tagsToDispatch = tagsToDispatch.replace(/[,\s]+/gm, ", ");
-    this.props.addLink({ // to dispatch into redux
-      originalUrl: this.state.originalUrl,
-      description: this.state.description,
-      tags: tagsToDispatch,
-    });
+
     this.handlePopupOpen();
+
+    if (this.state.isTextInputsDisabled) {
+      this.props.addLink(this.state.file);
+    } else {
+      let tagsToDispatch = this.state.tags;
+      tagsToDispatch = tagsToDispatch.replace(/[,\s]+/gm, ", ");
+      this.props.addLink({ // to dispatch into redux
+        originalUrl: this.state.originalUrl,
+        description: this.state.description,
+        tags: tagsToDispatch,
+      });
+    }
   };
 
   isFullFilling = () => {
     let flag = true;
-    if (!this.state.originalUrl) {
+    if (!this.state.originalUrl || !this.state.description || !this.state.tags) {
       flag = false;
     }
 
-    if (!this.state.description) {
-      flag = false;
-    }
-
-    if (!this.state.tags) {
-      flag = false;
-    }
     return flag;
   };
 

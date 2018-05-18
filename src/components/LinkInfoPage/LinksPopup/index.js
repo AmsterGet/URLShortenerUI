@@ -21,7 +21,7 @@ export default class LinksPopup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: !!this.props.links && this.props.isTagClicked,
+      open: this.props.isButtonClicked, // !!this.props.links &&
     };
   }
 
@@ -36,16 +36,21 @@ export default class LinksPopup extends React.Component {
 
     return (
       <InfoPageWrapper>
-        <Dialog
-          title="Found links"
-          actions={actions}
-          modal={true}
-          contentStyle={customContentStyle}
-          autoScrollBodyContent={true}
-          open={this.state.open}
-          onRequestClose={this.handleClose}
+        <Dialog title="Found links"
+                actions={actions}
+                modal={true}
+                contentStyle={customContentStyle}
+                autoScrollBodyContent={true}
+                open={this.state.open}
+                onRequestClose={this.handleClose}
         >
-          <LinksTable links={this.props.links}/>
+          {
+            !this.props.links ? this.props.errorMessage :
+              <LinksTable isLinksForInfo={this.props.isLinksForInfo || false}
+                          getLinkInfo={this.props.getLinkInfo}
+                          handleClosePopup={this.handleClose}
+                          links={this.props.links}/>
+          }
         </Dialog>
       </InfoPageWrapper>
     );
@@ -55,12 +60,12 @@ export default class LinksPopup extends React.Component {
     this.setState({
       open: false,
     });
-    this.props.changeTagClickState();
+    this.props.changeButtonClickState();
   };
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      open: !!nextProps.links && nextProps.isTagClicked,
+      open: nextProps.isButtonClicked, // !!nextProps.links &&
     });
   }
 }

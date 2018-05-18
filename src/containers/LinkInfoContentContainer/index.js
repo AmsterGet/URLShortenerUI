@@ -16,7 +16,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    getLinkInfo: boundActionCreators.boundGuestLinkInfo(dispatch),
     getLinksByTagName: boundActionCreators.boundGuestLinksByTagName(dispatch),
+    clearGuestLinks: boundActionCreators.boundClearGuestLinks(dispatch),
+
   };
 }
 

@@ -3,18 +3,24 @@ import config from "../../config";
 import {
   guestLinkInfoSuccess,
   guestLinkInfoError,
-  guestLinksByTagNameSuccess,
-  guestLinksByTagNameError,
+  guestLinksSuccess,
+  guestLinksError,
+  clearGuestLinks,
 } from "../actionCreators/index";
 
 export function boundGuestLinkInfo(dispatch) {
   return (data) => {
     axios({
       method: "get",
-      url: `${config.api}/${data.shortLink}/info`,
+      url: `${config.api}/link/${data.shortUrl}/info`,
     })
       .then((response) => {
-        dispatch(guestLinkInfoSuccess(response.data));
+        if (Array.isArray(response.data)) {
+          dispatch(guestLinksSuccess(response.data));
+        } else {
+          dispatch(guestLinkInfoSuccess(response.data));
+          dispatch(guestLinksSuccess([response.data]));
+        }
       })
       .catch((error) => {
         dispatch(guestLinkInfoError(error.response.data));
@@ -26,13 +32,19 @@ export function boundGuestLinksByTagName(dispatch) {
   return (data) => {
     axios({
       method: "get",
-      url: `${config.api}/${data.shortUrl}/info/${data.tagName}`,
+      url: `${config.api}/link/${data.shortUrl}/info/${data.tagName}`,
     })
       .then((response) => {
-        dispatch(guestLinksByTagNameSuccess(response.data));
+        dispatch(guestLinksSuccess(response.data));
       })
       .catch((error) => {
-        dispatch(guestLinksByTagNameError(error.response.data));
+        dispatch(guestLinksError(error.response.data));
       });
+  };
+}
+
+export function boundClearGuestLinks(dispatch) {
+  return (data) => {
+    dispatch(clearGuestLinks(data));
   };
 }

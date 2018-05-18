@@ -7,12 +7,14 @@ function mapStateToProps(state) {
     isLoading: state.guest.isLoading,
     isError: state.guest.isError,
     errorMessage: state.guest.errorMessage,
+    links: state.guest.links,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     getLinkInfo: boundActionCreators.boundGuestLinkInfo(dispatch),
+    clearGuestLinks: boundActionCreators.boundClearGuestLinks(dispatch),
   };
 }
 

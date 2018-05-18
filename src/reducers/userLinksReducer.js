@@ -1,4 +1,9 @@
-import { getLinksRequests, addLinkRequests, editLinkRequests, removeLinkRequests, CLEAR_USER_LINKS } from "../actions/actionTypes/";
+import { getLinksRequests,
+  addLinksRequests,
+  editLinkRequests,
+  removeLinkRequests,
+  CLEAR_USER_LINKS,
+} from "../actions/actionTypes/";
 
 const userLinksInitialState = {
   isLoading: false,
@@ -30,14 +35,14 @@ export default function (state = userLinksInitialState, action) {
       isError: true,
     };
 
-  case addLinkRequests.SUCCESS:
+  case addLinksRequests.SUCCESS:
     return {
       ...state,
       errorMessage: "",
       isLoading: false,
-      links: [...state.links, payload.link],
+      links: [...state.links, ...payload.links],
     };
-  case addLinkRequests.ERROR:
+  case addLinksRequests.ERROR:
     return {
       ...state,
       errorMessage: payload,

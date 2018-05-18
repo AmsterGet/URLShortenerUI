@@ -36,3 +36,7 @@ a:hover {
     height: 100%;
     width: 95%;
 }
+
+.options-table-column {
+    width: 26px;
+}

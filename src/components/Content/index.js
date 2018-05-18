@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import HomePage from "../HomePage";
 import LinkInfoPage from "../LinkInfoPage";
-import UserPage from "../UserPage";
+import UserPageContainer from "../../containers/UserPageContainer";
 import NotFoundPage from "../NotFoundPage";
 
 const ContentWrapper = styled.main`
@@ -22,7 +22,7 @@ export default class Content extends React.Component {
         <Switch>
           <Route exact path="/" component = { HomePage } />
           <Route strict exact path="/info" component = { LinkInfoPage } />
-          <Route strict exact path="/user/:login/links" component = { UserPage } />
+          <Route strict exact path="/user/:login" component = { UserPageContainer } />
           <Route component = { NotFoundPage } />
         </Switch>
       </ContentWrapper>

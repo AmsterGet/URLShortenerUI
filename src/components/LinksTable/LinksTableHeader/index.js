@@ -14,24 +14,25 @@ export default class LinksTableHeader extends React.Component {
     return (
       <React.Fragment>
         <TableRow>
-          <TableHeaderColumn tooltip="Short Url">
+          <TableHeaderColumn>
             Short Url
           </TableHeaderColumn>
-          <TableHeaderColumn className={this.props.userData ? "media-table-column" : ""} tooltip="Original Url">
-            Original Url
-          </TableHeaderColumn>
-          <TableHeaderColumn className="media-table-column" tooltip="Description">
+          { !this.props.isLinksForInfo ? <TableHeaderColumn className={this.props.userData ? "media-table-column" : ""}>
+              Original Url
+          </TableHeaderColumn> : "" }
+          <TableHeaderColumn className="media-table-column">
             Description
           </TableHeaderColumn>
-          <TableHeaderColumn className="media-table-column" tooltip="Post date">
-            Post date
-          </TableHeaderColumn>
-          { this.props.userData ? <React.Fragment>
-            <TableHeaderColumn className="transitions-table-column" tooltip="Transitions">
+          { !this.props.isLinksForInfo ? <TableHeaderColumn className="media-table-column">
+              Post date
+          </TableHeaderColumn> : "" }
+          { this.props.userData ?
+            <TableHeaderColumn className="transitions-table-column">
               Transitions
-            </TableHeaderColumn>
-            <TableHeaderColumn className="options-table-column" style={customOptionsStyle} tooltip="Options"/>
-          </React.Fragment> : "" }
+            </TableHeaderColumn> : "" }
+          { this.props.isLinksForInfo || this.props.userData ?
+            <TableHeaderColumn className="options-table-column"
+                               style={customOptionsStyle}/> : ""}
         </TableRow>
       </React.Fragment>
     );

@@ -27,12 +27,13 @@ export function boundSignIn(dispatch) {
           login: response.data.login,
           name: response.data.name,
           mail: response.data.mail,
+          role: response.data.role,
         };
         utils.localStorage.writeDataByKey("userData", resUserData);
         dispatch(signInSuccess(resUserData));
       })
       .catch((error) => {
-        dispatch(signInError(error.response.data));
+        dispatch(signInError("Wrong Login and/or password"));
       });
   };
 }
@@ -55,12 +56,13 @@ export function boundSignUp(dispatch) {
           login: response.data.login,
           name: response.data.name,
           mail: response.data.mail,
+          role: response.data.role,
         };
         utils.localStorage.writeDataByKey("userData", resUserData);
         dispatch(signUpSuccess(resUserData));
       })
       .catch((error) => {
-        dispatch(signUpError(error.response.data));
+        dispatch(signUpError("Such user already exists"));
       });
   };
 }

@@ -1,18 +1,19 @@
 import React from "react";
-import { Link, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import Dialog from "material-ui/Dialog";
 import FlatButton from "material-ui/FlatButton";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import SnackBar from "../SnackBar";
+import SelectField from "material-ui/SelectField";
+import MenuItem from "material-ui/MenuItem";
 
-const SignButtonContainer = styled.div`
-  display: inline-block;
-`;
-
-const UserDataContainer = styled.span`
-  margin-right: 15px;
+const NewUserPopupWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 15px;
 `;
 
 const customContentStyle = {
@@ -20,17 +21,17 @@ const customContentStyle = {
   maxWidth: "445px",
 };
 
-export default class AuthComponent extends React.Component {
+export default class NewUserPopup extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       open: false,
       openSnackBar: false,
-      isSigningUp: false,
       login: null,
       password: null,
       name: null,
       mail: null,
+      role: "user",
       snackMessage: "Wrong! Check your input, please!",
       errorMessage: "",
       isErrorShowed: false,
@@ -38,6 +39,7 @@ export default class AuthComponent extends React.Component {
   }
 
   render() {
+    console.log("RERENDER");
     const actions = [
       <FlatButton
         label="Cancel"
@@ -49,39 +51,18 @@ export default class AuthComponent extends React.Component {
         primary={true}
         onClick={this.handleSubmit}
       />,
-      <SignButtonContainer>
-        {this.state.isSigningUp ? <RaisedButton
-          label="Sign In"
-          primary={true}
-          onClick={this.handleSign}
-        /> : <RaisedButton
-          label="Sign Up"
-          primary={true}
-          onClick={this.handleSign}
-        />
-        }
-      </SignButtonContainer>,
     ];
 
     return (
       <div>
         { this.checkForError() }
-        { this.props.userData ?
-          <div>
-            <UserDataContainer>
-              <Link to={`/user/${this.props.userData.login}`}>
-                {this.props.userData.name}
-              </Link>
-            </UserDataContainer>
-            <RaisedButton label="Sign out"
-                          onClick={this.handleSignOut}
-                          primary={true}/>
-            <Redirect to={`/user/${this.props.userData.login}`}/>
-          </div> :
-          <RaisedButton label="Sign in/up"
-                        onClick={this.handlePopupOpen}
-                        primary={true}/>
-        }
+        <NewUserPopupWrapper>
+          <RaisedButton
+            label="Add user/admin"
+            primary={true}
+            onClick={this.handlePopupOpen}
+          />
+        </NewUserPopupWrapper>
         <SnackBar openSnackBar={this.state.openSnackBar}
                   handleSnackBarOpen={this.handleSnackBarOpen}
                   snackMessage={this.state.snackMessage}
@@ -94,22 +75,12 @@ export default class AuthComponent extends React.Component {
           contentStyle={customContentStyle}
           onRequestClose={this.handlePopupOpen}
         >
-          { this.state.isSigningUp ? <div>
-            <span>
-                REGISTRATION! Please, fill in all fields for Sign Up!
-            </span>
-            <br/>
-            <TextField floatingLabelText="Name"
-                       onChange={this.handleNameChange}/>
-            <br/>
-            <TextField floatingLabelText="Email"
-                       errorText={this.state.emailError}
-                       onChange={this.handleMailChange}/>
-            </div> : <div>
-                <span>
-                  Write down your login and password to sign in!
-                </span>
-              </div> }
+          <TextField floatingLabelText="Name"
+                     onChange={this.handleNameChange}/>
+          <br/>
+          <TextField floatingLabelText="Email"
+                     errorText={this.state.emailError}
+                     onChange={this.handleMailChange}/>
           <TextField floatingLabelText="Login"
                      errorText={this.state.errorMessage}
                      onChange={this.handleLoginChange}/>
@@ -118,27 +89,31 @@ export default class AuthComponent extends React.Component {
                      type="password"
                      errorText={this.state.passwordError}
                      onChange={this.handlePasswordChange}/>
-          <br/>
+          <SelectField
+            floatingLabelText="Role"
+            value={this.state.role}
+            onChange={this.handleSelectFieldChange}
+          >
+            <MenuItem value={"user"} primaryText="User" />
+            <MenuItem value={"admin"} primaryText="Admin" />
+          </SelectField>
         </Dialog>
       </div>
     );
   }
 
+  handleSelectFieldChange = (event, index, value) => {
+    this.setState({
+      role: value,
+    })
+  };
+
   handlePopupOpen = () => {
     if (this.state.open) {
-      this.setState({
-        login: null,
-        mail: null,
-        name: null,
-        password: null,
-        errorMessage: "",
-        emailError: false,
-        passwordError: false,
-      });
+      this.clearState();
     }
     this.setState({
       open: !this.state.open,
-      // isSigningUp: this.state.open,
       isErrorShowed: false,
     });
   };
@@ -149,31 +124,18 @@ export default class AuthComponent extends React.Component {
     });
   };
 
-  handleSignOut = () => {
-    console.log("Outed");
-    this.props.signOut(this.props.userData); // to dispatch into redux
-  };
-
-  handleSign = () => {
-    this.setState({isSigningUp: !this.state.isSigningUp});
-  };
-
   handleSubmit = () => {
     if (!this.isFullFilling()) {
       this.handleSnackBarOpen();
       return;
     }
-    this.state.isSigningUp ? // to dispatch into redux
-      this.props.signUp({
-       login: this.state.login,
-       mail: this.state.mail,
-       name: this.state.name,
-       password: this.state.password,
-      }) :
-      this.props.signIn({
-        login: this.state.login,
-        password: this.state.password,
-      });
+    this.props.addUser({ // to dispatch into redux
+      login: this.state.login,
+      mail: this.state.mail,
+      name: this.state.name,
+      password: this.state.password,
+      role: this.state.role,
+    });
     this.clearState();
     this.handlePopupOpen();
   };
@@ -193,7 +155,7 @@ export default class AuthComponent extends React.Component {
       mail: null,
       name: null,
       password: null,
-      errorMessage: false,
+      errorMessage: false, // HERE
       emailError: false,
       passwordError: false,
     });
@@ -201,10 +163,8 @@ export default class AuthComponent extends React.Component {
 
   isFullFilling = () => {
     let flag = true;
-    if (this.state.isSigningUp) {
-      if (!this.state.mail || !this.state.name) {
-        flag = false;
-      }
+    if (!this.state.mail || !this.state.name) {
+      flag = false;
     }
 
     if (!this.state.login || !this.state.password) {
@@ -215,14 +175,17 @@ export default class AuthComponent extends React.Component {
 
   handleLoginChange = (event, newValue) => {
     this.setState({
-        login: newValue,
-        errorMessage: false,
+      login: newValue,
+      isErrorShowed: false,
+      errorMessage: false,
     });
   };
 
   handleNameChange = (event, newValue) => {
     this.setState({
-        name: newValue,
+      name: newValue,
+      isErrorShowed: false,
+      errorMessage: false,
     });
   };
 

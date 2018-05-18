@@ -8,7 +8,14 @@ import {
 import {
   boundGuestLinkInfo,
   boundGuestLinksByTagName,
+  boundClearGuestLinks,
 } from "./boundGuestLinksActionCreators";
+
+import {
+  boundGetUsers,
+  boundRemoveUser,
+  boundAddUser,
+} from "./boundAdminActionCreators";
 
 import {
   boundGetLinks,
@@ -28,4 +35,8 @@ export default {
   boundEditLink,
   boundGuestLinkInfo,
   boundGuestLinksByTagName,
+  boundClearGuestLinks,
+  boundGetUsers,
+  boundAddUser,
+  boundRemoveUser,
 };

@@ -5,18 +5,19 @@ import {
   signUpError,
   signOutSuccess,
   signOutError,
-} from "./authActionCreators.js";
+} from "./authActionCreators";
 
 import {
   guestLinkInfoSuccess,
   guestLinkInfoError,
-  guestLinksByTagNameSuccess,
-  guestLinksByTagNameError,
-} from "./guestLinksActionCreators.js";
+  guestLinksSuccess,
+  guestLinksError,
+  clearGuestLinks,
+} from "./guestLinksActionCreators";
 
 import {
-  addLinkSuccess,
-  addLinkError,
+  addLinksSuccess,
+  addLinksError,
   editLinkSuccess,
   editLinkError,
   removeLinkSuccess,
@@ -24,7 +25,16 @@ import {
   clearUserLinks,
   getLinksSuccess,
   getLinksError,
-} from "./userLinksActionCreators.js";
+} from "./userLinksActionCreators";
+
+import {
+  getUsersSuccess,
+  getUsersError,
+  removeUserSuccess,
+  removeUserError,
+  addUserSuccess,
+  addUserError,
+} from "./adminActionCreators";
 
 export {
   signInSuccess,
@@ -35,15 +45,22 @@ export {
   signOutError,
   guestLinkInfoSuccess,
   guestLinkInfoError,
-  guestLinksByTagNameSuccess,
-  guestLinksByTagNameError,
-  clearUserLinks,
+  guestLinksSuccess,
+  guestLinksError,
+  clearGuestLinks,
   getLinksSuccess,
   getLinksError,
-  addLinkSuccess,
-  addLinkError,
+  clearUserLinks,
+  addLinksSuccess,
+  addLinksError,
   editLinkSuccess,
   editLinkError,
   removeLinkSuccess,
   removeLinkError,
+  getUsersSuccess,
+  getUsersError,
+  addUserSuccess,
+  addUserError,
+  removeUserSuccess,
+  removeUserError,
 };

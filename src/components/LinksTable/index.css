@@ -2,16 +2,8 @@
     width: 11%;
 }
 
-.options-table-column {
-    width: 26px;
-}
-
 @media (max-width: 650px) {
     .transitions-table-column {
         width: 30%;
-    }
-
-    .options-table-column {
-        display: none;
     }
 }
