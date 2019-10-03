@@ -2,15 +2,18 @@ import { connect } from "react-redux";
 import LinkInfoContent from "../../components/LinkInfoPage/LinkInfoContent";
 import boundActionCreators from "../../actions/boundActionCreators/";
 
+const guestSelector = (state) => state.guest || {}; 
+
 function mapStateToProps(state) {
+  const guest = guestSelector(state);
   return {
-    originalUrl: state.guest.linkInfo.originalUrl,
-    shortUrl: state.guest.linkInfo.shortUrl,
-    description: state.guest.linkInfo.description,
-    postDate: state.guest.linkInfo.postDate,
-    tags: state.guest.linkInfo.tags,
-    links: state.guest.links,
-    errorMessage: state.guest.errorMessage,
+    originalUrl: guest.linkInfo.originalUrl,
+    shortUrl: guest.linkInfo.shortUrl,
+    description: guest.linkInfo.description,
+    postDate: guest.linkInfo.postDate,
+    tags: guest.linkInfo.tags,
+    links: guest.links,
+    errorMessage: guest.errorMessage,
   };
 }
 
@@ -19,7 +22,6 @@ function mapDispatchToProps(dispatch) {
     getLinkInfo: boundActionCreators.boundGuestLinkInfo(dispatch),
     getLinksByTagName: boundActionCreators.boundGuestLinksByTagName(dispatch),
     clearGuestLinks: boundActionCreators.boundClearGuestLinks(dispatch),
-
   };
 }
 
