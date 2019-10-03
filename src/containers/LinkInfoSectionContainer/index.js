@@ -2,12 +2,11 @@ import { connect } from "react-redux";
 import boundActionCreators from "../../actions/boundActionCreators/";
 import LinkInfoSection from "../../components/HomePage/LinkInfoSection";
 
+const guestSelector = (state) => state.guest || {};
+
 function mapStateToProps(state) {
   return {
-    isLoading: state.guest.isLoading,
-    isError: state.guest.isError,
-    errorMessage: state.guest.errorMessage,
-    links: state.guest.links,
+    ...guestSelector(state),
   };
 }
 
